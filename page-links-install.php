@@ -5,6 +5,7 @@
  * @category Page_Links_Install
  * @package Page_Links
  */
+
 /**
  * Page Links installation
  *

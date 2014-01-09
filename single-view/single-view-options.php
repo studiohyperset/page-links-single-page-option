@@ -51,7 +51,7 @@ class SH_PageLinks_SingleView_Options
 				
                 'text_single_link' => array(
                     'id'      => 'text-single-link',
-                    'title'   => __('Text for single link:', SH_PAGE_LINKS_DOMAIN),
+                    'title'   => __('Single page link:', SH_PAGE_LINKS_DOMAIN),
                     //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
 					'valid'	  => 'formatted',
@@ -61,13 +61,13 @@ class SH_PageLinks_SingleView_Options
 				
 				'header' => array(
                     'id'      => 'header',
-                    'title'   => __('<div style="position:absolute; font-style:italic">After enabling, users can also activate the single-page view by appending "?singlepage=1" to the end of any page or post (e.g., http://sampleurl.com/page-title?singlepage=1).</div><div style="height:20px"></div>'),
+                    'title'   => '<div style="position:absolute; font-style:italic; font-weight: normal;">' . __('After enabling, users can also activate the single-page view by appending "?singlepage=1" to the end of any page or post (e.g., http://sampleurl.com/page-title?singlepage=1).', SH_PAGE_LINKS_DOMAIN) . '</div><div style="height:20px"></div>',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
                 ),
 				
                 'enabled_posts' => array(
                     'id'      => 'enabled-posts',
-                    'title'   => __('Enable option for following posts types:', SH_PAGE_LINKS_DOMAIN),
+                    'title'   => __("Enable a 'Single Page' option for these post types:", SH_PAGE_LINKS_DOMAIN),
                     //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'multicheckcp',
                     'valid'   => 'array',
@@ -89,7 +89,7 @@ class SH_PageLinks_SingleView_Options
      */
     public function options_sections($sections = array())
     {
-
+        
         $new_sections = array(
             'single_view' => array(
                 'title' => __('Single Page', SH_PAGE_LINKS_DOMAIN),
