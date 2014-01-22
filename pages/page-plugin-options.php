@@ -74,7 +74,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 			} else if (currentPanel == "#scrolling_pagination") {
 				$("#pages-to-scroll-count").val(3);
 				$("#nextpagelink").val('<?php _e("Next", SH_PAGE_LINKS_DOMAIN); ?>');
-				$("#previouspagelink").val('<?php _e("Preview", SH_PAGE_LINKS_DOMAIN); ?>');
+				$("#previouspagelink").val('<?php _e("Previous", SH_PAGE_LINKS_DOMAIN); ?>');
 				$("#firstpage").val('<?php _e("First", SH_PAGE_LINKS_DOMAIN); ?>');
 				$("#lastpage").val('<?php _e("Last", SH_PAGE_LINKS_DOMAIN); ?>');
 				$("#elipsis").val('. . .');
