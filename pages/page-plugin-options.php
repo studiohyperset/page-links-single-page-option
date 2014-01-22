@@ -73,10 +73,10 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				$("#paragraph-count").val(3);
 			} else if (currentPanel == "#scrolling_pagination") {
 				$("#pages-to-scroll-count").val(3);
-				$("#nextpagelink").val('Next');
-				$("#previouspagelink").val('Previous');
-				$("#firstpage").val('');
-				$("#lastpage").val('');
+				$("#nextpagelink").val('<?php _e("Next", SH_PAGE_LINKS_DOMAIN); ?>');
+				$("#previouspagelink").val('<?php _e("Preview", SH_PAGE_LINKS_DOMAIN); ?>');
+				$("#firstpage").val('<?php _e("First", SH_PAGE_LINKS_DOMAIN); ?>');
+				$("#lastpage").val('<?php _e("Last", SH_PAGE_LINKS_DOMAIN); ?>');
 				$("#elipsis").val('. . .');
 			}
 		});

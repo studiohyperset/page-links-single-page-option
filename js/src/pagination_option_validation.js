@@ -92,7 +92,7 @@ function processChanges($) {
 	changes += '\n\t '+ processChangesAddLink('<a href="#">' + $("#lastpage").val() + '</a>') + ' ';
 
 	if ($("#view-single-link").is(":checked"))
-		changes += sep + '\n\t '+ processChangesAddLink('<a href="#">Single Page</a>');
+		changes += sep + '\n\t '+ processChangesAddLink('<a href="#">'+ $("#text-single-link").val() +'</a>');
 
 	changes += '\n\t '+$("#after-content").val();
 

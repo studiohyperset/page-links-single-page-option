@@ -266,7 +266,7 @@ class SH_PageLinks_Options
         }
 
         if ($option['type'] == 'multicheckcp') {
-			$cps =  get_post_types(array('public' => true, '_builtin' => true), 'objects');
+			$cps =  get_post_types(array('public' => true), 'objects');
             
 			try {
                 @$value = unserialize($option_values[$option['section']][$option['name']]);  
