@@ -65,7 +65,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				$('#echo-tag').val('1');
 				$('#seperator').val('|');
 				$('#wrapper-tag').val('div');
-				$('#wrapper-id').val('');
+				$('#wrapper-id').val('post-pagination');
 				$('#wrapper-class').val('page-link');
 				$("#link-wrapper").val('span');
 				$("#link-wrapper-class").val('');
