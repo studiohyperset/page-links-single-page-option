@@ -67,16 +67,28 @@ class SH_PageLinks_Options
                 SH_PAGE_LINKS_URL . 'images/logo-16x16.png'
             );
             add_action('admin_print_styles-' . $menu_page, array($this, 'enqueue_scripts'));
-			add_submenu_page(
-				'sh-page-links-options',
-				__('Single Page', SH_PAGE_LINKS_DOMAIN),
-				__('Single Page', SH_PAGE_LINKS_DOMAIN),
-				'manage_options',
-				'sh-page-links-options',
-				array($this, 'show_menu_page')
-			);
+            add_submenu_page(
+                'sh-page-links-options',
+                __('Single Page', SH_PAGE_LINKS_DOMAIN),
+                __('Single Page', SH_PAGE_LINKS_DOMAIN),
+                'manage_options',
+                'sh-page-links-options',
+                array($this, 'show_menu_page')
+            );
         }
-        add_action( 'admin_enqueue_scripts', function () { return wp_enqueue_style( 'plp-global' );} );
+        add_action( 'admin_enqueue_scripts', array($this, 'admin_styles') );
+    }
+ 
+    /**
+     * admin_styles()
+     * Enqueue special style for admin
+     *
+     * @return void
+     */
+    public function admin_styles()
+    {
+        
+        return wp_enqueue_style( 'plp-global' );
     }
 
 
