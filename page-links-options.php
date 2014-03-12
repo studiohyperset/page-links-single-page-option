@@ -272,9 +272,23 @@ class SH_PageLinks_Options
                         . "name=\"sh_page_links_options[{$option['section']}]"
                         . "[{$option['name']}]\" "
                         . "id=\"{$option['id']}\" "
-						. "value=\"{$option['default']}\" "
+                        . "value=\"{$option['default']}\" "
                         . checked($option['default'], $value, false)
                         . " /></label> </td><td class='description'>{$option['description']}";
+        }
+        if ($option['type'] == 'select') {
+            $value = !empty($option_values[$option['section']][$option['name']])
+                        ? intval($option_values[$option['section']][$option['name']])
+                        : 0;
+            $option_str = "<select "
+                        . "name=\"sh_page_links_options[{$option['section']}]"
+                        . "[{$option['name']}]\" "
+                        . "id=\"{$option['id']}\" >";
+
+            foreach ($option['choices'] as $key => $choice) {
+                $option_str .= '<option value="'. $key .'" '. selected( $key, $value, false ) .'>'. $choice . '</option>';
+            }
+            $option_str .= "</select></td><td class='description'>{$option['description']}";
         }
 
         if ($option['type'] == 'multicheckcp') {
