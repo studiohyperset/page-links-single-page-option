@@ -70,7 +70,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				$("#link-wrapper").val('span');
 				$("#link-wrapper-class").val('');
 			} else if (currentPanel == "#auto_pagination") {
-				$("#paragraph-count").val(3);
+				$("#paragraph-count").val(2);
 			} else if (currentPanel == "#scrolling_pagination") {
 				$("#pages-to-scroll-count").val(3);
 				$("#nextpagelink").val('<?php _e("Next", SH_PAGE_LINKS_DOMAIN); ?>');

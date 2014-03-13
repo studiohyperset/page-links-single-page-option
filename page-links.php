@@ -143,9 +143,10 @@ class SH_PageLinks_Bootstrap {
 		$updateUrl = 'http://svn.sh/update/update.php?name='. $slug;
 		
 		$raw = get_transient($slug . "_update");
+        //var_dump($raw); die();
 		if(!$raw) {
 			$raw = wp_remote_get($updateUrl);
-			set_transient("page_links_update", $raw, 3600);
+			set_transient($slug . "_update", $raw, 28800);
 		}
 		if ( (is_wp_error($raw)) || (200 != wp_remote_retrieve_response_code($raw))) {
 			return $option;
