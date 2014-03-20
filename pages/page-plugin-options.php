@@ -45,7 +45,39 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 			$('.nav-tab-wrapper li[aria-controls="'+hash+'"] a').click();
 		});
     })
+
 	jQuery(document).ready(function($) {
+
+		$("#break-type").change( function() {
+			if ($(this).val()==0)
+				$("#paragraph-count").val('3');
+			else if ($(this).val()==1)
+				$("#paragraph-count").val('2');
+			else if ($(this).val()==2)
+				$("#paragraph-count").val('50');
+		});
+
+		$("#sh_pagelinks_options_form").submit( function(e) {
+
+			if ($("#break-type").length>0) {
+
+				if (  $("#break-type").val()==0 && $("#paragraph-count").val() < 3)
+					$("#paragraph-count").val('3');
+				else if ($("#break-type").val()==1 && $("#paragraph-count").val() < 2)
+					$("#paragraph-count").val('2');
+				else if ($("#break-type").val()==2 && $("#paragraph-count").val() < 50)
+					$("#paragraph-count").val('50');
+			}
+			if ($("#use-ajax").attr("checked")=="checked") {
+				if ($("#wrapper-tag").val()=="")
+					$("#wrapper-tag").val('div');
+				if ($("#wrapper-id").val()=="")
+					$("#wrapper-id").val('post-pagination');
+			}
+			return true;
+
+		});
+
   		$("#restorevalue").click(function() {
 			currentPanel = $(".ui-tabs-nav li.ui-tabs-active a").attr("href");
 			if (currentPanel == "#single_view") {
@@ -57,6 +89,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 						$(this).attr("checked",false);
 				});
 			} else if (currentPanel == "#pagination_styles") {
+				$("#use-ajax").attr("checked",false)
 				$('#before-content').val('<p>Pages:');
 				$('#after-content').val('</p>');
 				$('#link-before').val('');
@@ -70,7 +103,9 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				$("#link-wrapper").val('span');
 				$("#link-wrapper-class").val('');
 			} else if (currentPanel == "#auto_pagination") {
-				$("#paragraph-count").val(2);
+				$("#break-type").val(0);
+				$("#paragraph-count").val(3);
+				$("#inline-nextpage").attr('checked', false);
 			} else if (currentPanel == "#scrolling_pagination") {
 				$("#pages-to-scroll-count").val(3);
 				$("#nextpagelink").val('<?php _e("Next", SH_PAGE_LINKS_DOMAIN); ?>');
