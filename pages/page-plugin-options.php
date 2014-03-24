@@ -13,7 +13,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
     $sections = array_keys($sections_array);
 
     $messages    = get_settings_errors();
-    $current_tab = 'single_view';
+    $current_tab = '';
 
     if (!empty($messages[0]['message'])) {
         $current_tab = $messages[0]['message'];
@@ -48,6 +48,12 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 
 	jQuery(document).ready(function($) {
 
+		<?php
+		if ($current_tab != "") {
+			echo '$("#tab-'. $current_tab .'").click();';
+		}
+		?>
+
 		$("#break-type").change( function() {
 			if ($(this).val()==0)
 				$("#paragraph-count").val('3');
@@ -55,6 +61,10 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				$("#paragraph-count").val('2');
 			else if ($(this).val()==2)
 				$("#paragraph-count").val('50');
+		});
+
+		$(".ui-tabs-nav .nav-tab a").click( function() {
+			$("#input-current-tab").val($("li.ui-tabs-active").attr('aria-controls'));
 		});
 
 		$("#sh_pagelinks_options_form").submit( function(e) {
@@ -74,6 +84,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				if ($("#wrapper-id").val()=="")
 					$("#wrapper-id").val('post-pagination');
 			}
+
 			return true;
 
 		});
@@ -179,7 +190,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		jQuery("#sepval-7").html(sepval);
 		jQuery("#sepval-8").html(sepval);
 		
-		
 	});
 	jQuery(function (){
 		jQuery('#link-wrapper').change(function (){
@@ -269,7 +279,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		});       
 	});
 	
-		
 </script>
 <div class="wrap">
 	
@@ -328,7 +337,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
     <form action="options.php" method="post" id="sh_pagelinks_options_form">
 
         <?php settings_fields('sh_page_links_options'); ?>
-
+        
         <div class="tabs">
 
             <div class="nav-tab-wrapper">
