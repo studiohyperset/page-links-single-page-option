@@ -78,7 +78,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 				else if ($("#break-type").val()==2 && $("#paragraph-count").val() < 50)
 					$("#paragraph-count").val('50');
 			}
-			if ($("#use-ajax").attr("checked")=="checked") {
+			if ($("#use-ajax").val()!="0") {
 				if ($("#wrapper-tag").val()=="")
 					$("#wrapper-tag").val('div');
 				if ($("#wrapper-id").val()=="")
@@ -100,7 +100,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 						$(this).attr("checked",false);
 				});
 			} else if (currentPanel == "#pagination_styles") {
-				$("#use-ajax").attr("checked",false)
+				$("#use-ajax").val('0');
 				$('#before-content').val('<p>Pages:');
 				$('#after-content').val('</p>');
 				$('#link-before').val('');
