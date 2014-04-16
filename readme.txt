@@ -13,7 +13,7 @@ Tags: nextpage, wp_link_pages, link_pages, Page-Link, multipage, next page, page
 Requires at least: 3.0
 
 
-Tested up to: 3.8.1
+Tested up to: 3.9
 
 
 Stable tag: 2.1
