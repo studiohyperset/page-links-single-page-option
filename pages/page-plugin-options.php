@@ -18,6 +18,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
     if (!empty($messages[0]['message'])) {
         $current_tab = $messages[0]['message'];
 	}
+	
 ?>
 <style type="text/css">
     #icon-sh-page-links-options {
@@ -51,6 +52,15 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		<?php
 		if ($current_tab != "") {
 			echo '$("#tab-'. $current_tab .'").click();';
+			echo '$("#input-current-tab").val("'. $current_tab .'");';
+		} else {
+			?>
+			if(window.location.hash) {
+				str = window.location.hash;
+				str = str.replace("#","");
+				$("#input-current-tab").val(str);
+			}
+			<?php
 		}
 		?>
 
