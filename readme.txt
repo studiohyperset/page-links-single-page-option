@@ -145,7 +145,7 @@ The Single Page module also serves as the basic framework for the other [Page-Li
 == Screenshots ==
 
 
-Try a fully-functioning demo here: [http://demo.pagelinksplus.com](http://demo.pagelinksplus.com/wp-login.php).
+Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](http://demo.pagelinksplus.com/wp-login.php).
 
 
 
