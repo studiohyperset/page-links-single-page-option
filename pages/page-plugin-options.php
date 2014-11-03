@@ -308,16 +308,21 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 	    
 		    <p><a href="http://studiohyperset.com" target="_blank">Studio Hyperset</a> <?php _e("built Page-Links Plus for one reason: to provide the WordPress community with an integrated, comprehensive pagination solution.", SH_PAGE_LINKS_DOMAIN); ?></p>
 		    <p><?php _e("Whether you're a WordPress developer, site manager, or lay user, Page-Links Plus can help you set up, customize, and manage your site's pagination quickly and easily.", SH_PAGE_LINKS_DOMAIN); ?></p>
-		    
-		    <ul id="sales">
+            
+
+
+ <?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
+<iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } ?>		    
+
+		    <ul id="sales" class="<?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo 'sales-new'; } ?>">
 		    	<?php $learnmore = __("Learn More", SH_PAGE_LINKS_DOMAIN); ?>
 			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php')) { } else { echo '<li id="pagination_styles"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add Pagination Styles", SH_PAGE_LINKS_DOMAIN) . ' - $5</a></li><li class="pitch">'. __('Easily style Page-Link-generated page lists and manage associated parameters.', SH_PAGE_LINKS_DOMAIN) . ' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
 			    
 			    
-			    <?php if (is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="auto_scrolling_pagination"><a href="http://pagelinksplus.com/shop" target="_blank">'. __('Add Auto &amp; Scrolling Pagination', SH_PAGE_LINKS_DOMAIN) .' - $10</a></li><li class="pitch">'. __('Paginate pages and posts quickly and uniformly and integrate custom-length, scrolling page lists.', SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
+			    <?php if (is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="auto_scrolling_pagination"><a href="http://pagelinksplus.com/shop" target="_blank">'. __('Add Auto &amp; Scrolling Pagination', SH_PAGE_LINKS_DOMAIN) .' - $7</a></li><li class="pitch">'. __('Paginate pages and posts quickly and uniformly and integrate custom-length, scrolling page lists.', SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
 			    
 			    
-			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="three_modules"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add All Three Modules", SH_PAGE_LINKS_DOMAIN) .' - $12</a></li><li class="pitch">'. __("Manage pagination site-wide with WordPress' intuitive administration framework.", SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)'; } ?>
+			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="three_modules"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add All Three Modules", SH_PAGE_LINKS_DOMAIN) .' - $10</a></li><li class="pitch">'. __("Manage pagination site-wide with WordPress' intuitive administration framework.", SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)'; } ?>
 		    
 		    </ul>
 		    
