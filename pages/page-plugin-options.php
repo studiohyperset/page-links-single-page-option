@@ -311,10 +311,10 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
             
 
 
- <?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
-<iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } ?>		    
+ <?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
+<iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } else { } ?>		    
 
-		    <ul id="sales" class="<?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo 'sales-new'; } ?>">
+		    <ul id="sales" class="<?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo 'sales-new'; } else { } ?>">
 		    	<?php $learnmore = __("Learn More", SH_PAGE_LINKS_DOMAIN); ?>
 			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php')) { } else { echo '<li id="pagination_styles"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add Pagination Styles", SH_PAGE_LINKS_DOMAIN) . ' - $5</a></li><li class="pitch">'. __('Easily style Page-Link-generated page lists and manage associated parameters.', SH_PAGE_LINKS_DOMAIN) . ' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
 			    
