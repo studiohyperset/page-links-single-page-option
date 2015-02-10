@@ -89,7 +89,7 @@ class SH_PageLinks_SingleView {
 		$singlepage = $singlepage = !empty($_GET['singlepage']) ? 1 : 0;
 
         if ($singlepage == 0) {
-    		$url = add_query_arg('singlepage', 1, get_permalink());
+    		$url = add_query_arg('singlepage', 1);
     		$link_text = !empty($options['single_view']['text_single_link']) ? $options['single_view']['text_single_link'] : __("Single Page", SH_PAGE_LINKS_DOMAIN);
 		} else {
             $url = get_permalink();
