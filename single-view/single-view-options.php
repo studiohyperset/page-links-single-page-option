@@ -54,14 +54,24 @@ class SH_PageLinks_SingleView_Options
                     'default' => 1,
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-				
+                
                 'text_single_link' => array(
                     'id'      => 'text-single-link',
                     'title'   => __('Single page link:', SH_PAGE_LINKS_DOMAIN),
                     //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
-					'valid'	  => 'formatted',
+                    'valid'   => 'formatted',
                     'default' => 'Single Page',
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
+				
+                'text_multiple_link' => array(
+                    'id'      => 'text-multiple-link',
+                    'title'   => __('Multiple page link:', SH_PAGE_LINKS_DOMAIN),
+                    //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+					'valid'	  => 'formatted',
+                    'default' => 'Multi-Page',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
 				
