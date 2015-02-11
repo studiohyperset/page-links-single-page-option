@@ -80,7 +80,7 @@ class SH_PageLinks_SingleView_Options
                     'title'   => '<div style="position:absolute; font-style:italic; font-weight: normal;">' . __('After enabling, users can also activate the single-page view by appending "?singlepage=1" to the end of any page or post (e.g., http://sampleurl.com/page-title?singlepage=1).', SH_PAGE_LINKS_DOMAIN) . '</div><div style="height:20px"></div>',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
                 ),
-				
+                
                 'enabled_posts' => array(
                     'id'      => 'enabled-posts',
                     'title'   => $enable_title,
@@ -88,6 +88,16 @@ class SH_PageLinks_SingleView_Options
                     'type'    => 'multicheckcp',
                     'valid'   => 'array',
                     'default' => array('post', 'page'),
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
+				
+                'phpstatus' => array(
+                    'id'      => 'php-status',
+                    'title'   => __('System Status:', SH_PAGE_LINKS_DOMAIN),
+                    //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'phpstatus',
+                    'valid'   => 'array',
+                    'default' => '',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
 				
