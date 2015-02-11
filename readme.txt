@@ -49,7 +49,7 @@ See [http://pagelinksplus.com/documentation-and-resources/](http://pagelinksplus
 
 Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](http://demo.pagelinksplus.com/wp-login.php).
 
-=PLP in :02=
+**PLP in :02**
 
 [vimeo http://vimeo.com/109187562]
 
