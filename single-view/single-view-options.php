@@ -57,7 +57,7 @@ class SH_PageLinks_SingleView_Options
                 
                 'text_single_link' => array(
                     'id'      => 'text-single-link',
-                    'title'   => __('Single page link:', SH_PAGE_LINKS_DOMAIN),
+                    'title'   => __('\'Single Page\' Link Text', SH_PAGE_LINKS_DOMAIN),
                     //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
@@ -67,7 +67,7 @@ class SH_PageLinks_SingleView_Options
 				
                 'text_multiple_link' => array(
                     'id'      => 'text-multiple-link',
-                    'title'   => __('Multiple page link:', SH_PAGE_LINKS_DOMAIN),
+                    'title'   => __('\'Multi-Page\' Link Text', SH_PAGE_LINKS_DOMAIN),
                     //'description'   => __('Globally enable a single-page option for all page link lists.', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
 					'valid'	  => 'formatted',
