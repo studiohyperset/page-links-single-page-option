@@ -333,10 +333,12 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		    	?>
 		    	<p id="list">
 		    		&raquo; <?php _e("Learn more about", SH_PAGE_LINKS_DOMAIN); ?> <a href="http://pagelinksplus.com" target="_blank">Page-Links Plus</a>.
-		    		<br />&raquo; <?php printf(__("Plugin %s documentation and resources", SH_PAGE_LINKS_DOMAIN), '<a href="http://pagelinksplus.com/documentation-and-resources" target="_blank">'); ?></a>.
-		    		<br />&raquo; <a href="http://profiles.wordpress.org/studiohyperset/" target="_blank"><?php _e("Browse SH's other WordPress plugins", SH_PAGE_LINKS_DOMAIN); ?></a>.
-		    		<br />&raquo; <?php _e("Like the plugin?", SH_PAGE_LINKS_DOMAIN); ?> <a href="http://wordpress.org/support/plugin/page-links-single-page-option" target="_blank"><?php _e("Create a discussion post", SH_PAGE_LINKS_DOMAIN); ?></a> <?php _e("or send us a message via Twitter", SH_PAGE_LINKS_DOMAIN); ?> (<a href="https://twitter.com/studiohyperset" target="_blank">@studiohyperset</a> / <a href="https://twitter.com/#!/search/?q=%23pagelinksplus&#038;src=hash" target="_blank">#pagelinksplus</a>), <a href="http://www.facebook.com/studiohyperset" target="_blank">Facebook</a>, <?php _e("or", SH_PAGE_LINKS_DOMAIN); ?> <a href="https://plus.google.com/u/0/110603974542824315461/" target="_blank">Google+</a>.
-		    		<br />&raquo; <a href="http://studiohyperset.com/contact" target="_blank"><?php printf(__("Contact SH %s and/or connect with us on %s Facebook,%s %s Twitter,%s and %s Google+", SH_PAGE_LINKS_DOMAIN), '</a>', '<a href="http://www.facebook.com/studiohyperset" target="_blank">', '</a>', '<a href="http://twitter.com/#!/studiohyperset" target="_blank">', '</a>', '<a href="https://plus.google.com/110603974542824315461" target="_blank">'); ?></a>
+		    		<br />&raquo; <?php printf(__("Review plugin %s documentation and resources", SH_PAGE_LINKS_DOMAIN), '<a href="http://pagelinksplus.com/documentation-and-resources" target="_blank">'); ?></a>.
+		    		<br />&raquo; <a href="http://studiohyperset.com/#solutions" target="_blank"><?php _e("Browse SH's other WordPress plugins", SH_PAGE_LINKS_DOMAIN); ?></a>.
+		    		<br />&raquo; <a href="http://pagelinksplus.com/forums/" target="_blank"><?php _e("Create a discussion post in the Page-Links Plus community", SH_PAGE_LINKS_DOMAIN); ?></a>.
+                    <br />&raquo; <?php _e("Send the developer a message via Twitter", SH_PAGE_LINKS_DOMAIN); ?> (<a href="https://twitter.com/studiohyperset" target="_blank">@studiohyperset</a> / <a href="https://twitter.com/#!/search/?q=%23pagelinksplus&#038;src=hash" target="_blank">#pagelinksplus</a>), <a href="http://www.facebook.com/studiohyperset" target="_blank">Facebook</a>, <?php _e("or", SH_PAGE_LINKS_DOMAIN); ?> <a href="https://plus.google.com/u/0/110603974542824315461/" target="_blank">Google+</a>.
+                    
+		    		<br />&raquo; <a href="http://studiohyperset.com/#contact" target="_blank"><?php printf(__("Contact SH %s and/or connect with us on %s Facebook,%s %s Twitter,%s and %s Google+", SH_PAGE_LINKS_DOMAIN), '</a>', '<a href="http://www.facebook.com/studiohyperset" target="_blank">', '</a>', '<a href="http://twitter.com/#!/studiohyperset" target="_blank">', '</a>', '<a href="https://plus.google.com/110603974542824315461" target="_blank">'); ?></a>
 				<?php
 				} else { echo ''; } 
 				?>

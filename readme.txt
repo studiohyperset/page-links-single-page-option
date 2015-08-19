@@ -3,17 +3,21 @@ Contributors: studiohyperset
 Donate link: https://pagelinksplus.com
 Tags: nextpage, wp_link_pages, link_pages, Page-Link, multipage, next page, pages, single page, single view, view all, all pages, pagination
 Requires at least: 3.0
+<<<<<<< HEAD
 Tested up to: 4.3
 Stable tag: 2.3.1
+=======
+Tested up to: 4.2
+Stable tag: 2.4
+>>>>>>> origin/master
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Adds a "single page" option to WordPress page lists and helps users paginate content easily & efficiently.
+A WordPress pagination plugin that helps users paginate content easily & efficiently.
 
 == Description ==
 
 [vimeo http://vimeo.com/109187562]
-
 
 While WordPress' [&#60;!--nextpage--&#62; quicktag](http://codex.wordpress.org/Write_Post_SubPanel#Quicktags) and [wp_link_pages() function](http://codex.wordpress.org/Function_Reference/wp_link_pages) make integrating page links rather effortless, WordPress doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. 
 
@@ -42,18 +46,31 @@ See [http://pagelinksplus.com/documentation-and-resources/](http://pagelinksplus
 * [Learn more about Page-Links Plus](http://pagelinksplus.com).
 * Read detailed [installation instructions](http://pagelinksplus.com/documentation-and-resources/).
 * Browse plugin [resources](http://pagelinksplus.com/documentation-and-resources/).
-* Like the plugin? Create a [discussion post](http://wordpress.org/support/plugin/page-links-single-page-option) or send us a message via Twitter [@studiohyperset](https://twitter.com/studiohyperset) / [#pagelinksplus](https://twitter.com/#!/search/?q=%23pagelinksplus&src=hash), [Facebook](http://www.facebook.com/studiohyperset), or [Google+](https://plus.google.com/u/0/110603974542824315461/).
-* Learn about [other Studio Hyperset WordPress plugins](http://studiohyperset.com/projects/wordpress-plugins). 
+* Create a discussion post in the [Page-Links Plus community](http://pagelinksplus.com/forums/).
+* Send the developer a message via Twitter [@studiohyperset](https://twitter.com/studiohyperset) / [#pagelinksplus](https://twitter.com/#!/search/?q=%23pagelinksplus&src=hash), [Facebook](http://www.facebook.com/studiohyperset), or [Google+](https://plus.google.com/u/0/110603974542824315461/).
+* Learn about [other Studio Hyperset WordPress plugins](http://studiohyperset.com/#solutions). 
 
 == Screenshots ==
 
 Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](http://demo.pagelinksplus.com/wp-login.php).
+
+**PLP in :02**
+
+[vimeo http://vimeo.com/109187562]
 
 == Changelog ==
 
 Review the PLP change log here: [http://pagelinksplus.com/documentation-and-resources/](http://pagelinksplus.com/documentation-and-resources/)
 
 == Upgrade Notice ==
+
+= 2.4.2 (2/11/15) =
+
+Bug fixes, feature enhancements
+
+= 2.3.2 (12/19/14) =
+
+Bug fixes, feature enhancements
 
 = 2.3.1 (11/25/14) =
 

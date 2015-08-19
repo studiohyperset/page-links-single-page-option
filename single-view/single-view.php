@@ -87,17 +87,23 @@ class SH_PageLinks_SingleView {
 		$options = $sh_page_links->get_options();
 		
 		$singlepage = $singlepage = !empty($_GET['singlepage']) ? 1 : 0;
-		$url = add_query_arg('singlepage', 1, get_permalink());
-		$link_text = !empty($options['single_view']['text_single_link']) ? $options['single_view']['text_single_link'] : __("Single Page", SH_PAGE_LINKS_DOMAIN);
-		
+
+        if ($singlepage == 0) {
+    		$url = add_query_arg('singlepage', 1);
+    		$link_text = !empty($options['single_view']['text_single_link']) ? $options['single_view']['text_single_link'] : __("Single Page", SH_PAGE_LINKS_DOMAIN);
+		} else {
+            $url = get_permalink();
+            $link_text = !empty($options['single_view']['text_multiple_link']) ? $options['single_view']['text_multiple_link'] : __("Multi-Page", SH_PAGE_LINKS_DOMAIN);
+        }
+
 		$link = 	" "
 					. $sep 
 					. " " 
-					. (!$singlepage ? "<a href=\"{$url}\">" : "") 
+					. "<a data-ajax=\"0\" href=\"{$url}\">"
                     . $wrap_open
                     . $link_text
                     . $wrap_close
-                    . (!$singlepage ? "</a>" : "");
+                    . "</a>";
 					
 		return $link;
 		

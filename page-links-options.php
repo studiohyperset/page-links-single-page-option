@@ -341,6 +341,7 @@ class SH_PageLinks_Options
 					. "value=\"_empty_\" ";
 						
         }
+        
         if ($option['type'] == 'text') {
             $description = !empty($option['description'])
                            ? "<span class=\"description\">{$option['description']}</span>" : '';
@@ -352,12 +353,80 @@ class SH_PageLinks_Options
                         . "name=\"sh_page_links_options[{$option['section']}]"
                         . "[{$option['name']}]\" "
                         . "id=\"{$option['id']}\" "
-						. "value=\"{$value}\" "
+                        . "value=\"{$value}\" "
                         . " /></label> </td><td class='description'>{$option['description']}";
         }
-		/*. "onkeyup=\"document.getElementById('{$option['id']}-1').innerHTML = this.value\" "
-		. "onclick=\"document.getElementById('{$option['id']}-1').innerHTML = this.value\" "*/
-                        
+
+        if ($option['type'] == 'phpstatus') {
+            
+            $option_str = '<div class="phpstatus">';
+
+            if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+                $option_str .= '<li>'. __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong></li>';
+            } else {
+                $option_str .= '<li class="false">' . __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong> <em>' . __("You'll want to make sure your server's running the latest version of PHP. The demo site runs the 'bleeding edge' release, but as long as your environment runs the latest version of 5.3+, PLP will operate as intended.<br /><br />Please contact your host for more information.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
+            }
+
+            global $wp_version;
+            if (version_compare($wp_version, '3.0.0') >= 0){
+                $option_str .= '<li>'. __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong></li>';
+            } else {
+                $option_str .= '<li class="false">' . __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong> <em>' . __("The Page-Links Plus demo site always runs the latest WordPress nightly release. However, as long as your site runs WP 3.0+, PLP will operate as intended.<br /><br />Please update your version of WordPress as soon as possible.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
+            }
+
+            $dir = get_stylesheet_directory() .'/style.css';
+            if (@fopen($dir, 'r')) {
+                $dir = get_stylesheet_directory() .'/single.php';
+                $handle = @fopen($dir, 'r');
+                if ($handle) {
+                    $contents = fread($handle, filesize($dir));
+                    if (strpos($contents, "wp_link_pages")) {
+                        $option_str .= '<li>' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Found", SH_PAGE_LINKS_DOMAIN) . '</strong></li>';
+                    } else {
+                        $option_str .= '<li class="false">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn’t include this function, you’ll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+                    }
+                } else {
+                    $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("File not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn’t include this function, you’ll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+                }
+            } else {
+                $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Can't access theme files", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn’t include this function, you’ll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+            }
+
+            $updates = get_site_transient('update_plugins');
+            
+            if (isset($updates->response['page-links-single-page-option/page-links.php'])) {
+                $option_str .= '<li class="false">' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['page-links-single-page-option/page-links.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+            } else {
+                $option_str .= '<li>' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong></li>';
+            }
+            
+
+            if (class_exists('SH_PageLinks_PagStyles_Bootstrap')) {
+                if (!isset($updates->response['pagination-styles/pagination-styles.php'])) {
+                    $option_str .= '<li>' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong></li>';
+                } else {
+                    $option_str .= '<li class="false">' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['pagination-styles/pagination-styles.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                }
+            }
+
+            if (class_exists('SH_PageLinks_AutoPag_Bootstrap')) {
+                if (!isset($updates->response['auto-pagination/auto-pagination.php'])) {
+                    $option_str .= '<li>' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong></li>';
+                } else {
+                    $option_str .= '<li class="false">' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['auto-pagination/auto-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                }
+            }
+
+            if (class_exists('SH_PageLinks_ScrollingPagination_Bootstrap')) {
+                if (!isset($updates->response['scrolling-pagination/scrolling-pagination.php'])) {
+                    $option_str .= '<li>' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong></li>';
+                } else {
+                    $option_str .= '<li class="false">' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['scrolling-pagination/scrolling-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                }
+            }
+
+        }        
+        
         echo $option_str;
     }
 
