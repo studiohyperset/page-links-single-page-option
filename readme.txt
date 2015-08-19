@@ -59,7 +59,7 @@ Review the PLP change log here: [http://pagelinksplus.com/documentation-and-reso
 
 == Upgrade Notice ==
 
-= 2.4.2 (2/11/15) =
+= 2.4 (2/11/15) =
 
 Bug fixes, feature enhancements
 
