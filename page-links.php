@@ -175,3 +175,11 @@ class SH_PageLinks_Bootstrap {
 		return $option;
 	}
 }
+
+
+/*
+ * Modules All In One
+ */
+include_once 'addons/auto-pagination/auto-pagination.php';
+include_once 'addons/pagination-styles/pagination-styles.php';
+include_once 'addons/scrolling-pagination/scrolling-pagination.php';

@@ -314,34 +314,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
  <?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
 <iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } else { } ?>		    
 
-		    <ul id="sales" class="<?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo 'sales-new'; } else { } ?>">
-		    	<?php $learnmore = __("Learn More", SH_PAGE_LINKS_DOMAIN); ?>
-			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php')) { } else { echo '<li id="pagination_styles"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add Pagination Styles", SH_PAGE_LINKS_DOMAIN) . ' - $5</a></li><li class="pitch">'. __('Easily style Page-Link-generated page lists and manage associated parameters.', SH_PAGE_LINKS_DOMAIN) . ' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
-			    
-			    
-			    <?php if (is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="auto_scrolling_pagination"><a href="http://pagelinksplus.com/shop" target="_blank">'. __('Add Auto &amp; Scrolling Pagination', SH_PAGE_LINKS_DOMAIN) .' - $7</a></li><li class="pitch">'. __('Paginate pages and posts quickly and uniformly and integrate custom-length, scrolling page lists.', SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)</li><li class="spacer">&nbsp;</li>'; } ?>
-			    
-			    
-			    <?php if (is_plugin_active('pagination-styles/pagination-styles.php') || is_plugin_active('auto-pagination/auto-pagination.php') || is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { } else { echo '<li id="three_modules"><a href="http://pagelinksplus.com/shop" target="_blank">'. __("Add All Three Modules", SH_PAGE_LINKS_DOMAIN) .' - $10</a></li><li class="pitch">'. __("Manage pagination site-wide with WordPress' intuitive administration framework.", SH_PAGE_LINKS_DOMAIN) .' (<a href="http://pagelinksplus.com/shop" target="_blank">'. $learnmore .'</a> &raquo;)'; } ?>
-		    
-		    </ul>
-		    
-		    <?php if (is_plugin_active('pagination-styles/pagination-styles.php') && is_plugin_active('auto-pagination/auto-pagination.php') && is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo '
-			<p id="complete">"'.$blog_title = get_bloginfo('name').'" '. __("is running the complete Page-Links Plus framework.", SH_PAGE_LINKS_DOMAIN) .'</p>'; } else { } ?>
-		    
-		    <?php if (is_plugin_active('pagination-styles/pagination-styles.php') && is_plugin_active('auto-pagination/auto-pagination.php') && is_plugin_active('scrolling-pagination/scrolling-pagination.php') || is_plugin_active('pagination-styles/pagination-styles.php') && is_plugin_active('auto-pagination/auto-pagination.php')) { 
-		    	?>
-		    	<p id="list">
-		    		&raquo; <?php _e("Learn more about", SH_PAGE_LINKS_DOMAIN); ?> <a href="http://pagelinksplus.com" target="_blank">Page-Links Plus</a>.
-		    		<br />&raquo; <?php printf(__("Review plugin %s documentation and resources", SH_PAGE_LINKS_DOMAIN), '<a href="http://pagelinksplus.com/documentation-and-resources" target="_blank">'); ?></a>.
-		    		<br />&raquo; <a href="http://studiohyperset.com/#solutions" target="_blank"><?php _e("Browse SH's other WordPress plugins", SH_PAGE_LINKS_DOMAIN); ?></a>.
-		    		<br />&raquo; <a href="http://pagelinksplus.com/forums/" target="_blank"><?php _e("Create a discussion post in the Page-Links Plus community", SH_PAGE_LINKS_DOMAIN); ?></a>.
-                    <br />&raquo; <?php _e("Send the developer a message via Twitter", SH_PAGE_LINKS_DOMAIN); ?> (<a href="https://twitter.com/studiohyperset" target="_blank">@studiohyperset</a> / <a href="https://twitter.com/#!/search/?q=%23pagelinksplus&#038;src=hash" target="_blank">#pagelinksplus</a>), <a href="http://www.facebook.com/studiohyperset" target="_blank">Facebook</a>, <?php _e("or", SH_PAGE_LINKS_DOMAIN); ?> <a href="https://plus.google.com/u/0/110603974542824315461/" target="_blank">Google+</a>.
-                    
-		    		<br />&raquo; <a href="http://studiohyperset.com/#contact" target="_blank"><?php printf(__("Contact SH %s and/or connect with us on %s Facebook,%s %s Twitter,%s and %s Google+", SH_PAGE_LINKS_DOMAIN), '</a>', '<a href="http://www.facebook.com/studiohyperset" target="_blank">', '</a>', '<a href="http://twitter.com/#!/studiohyperset" target="_blank">', '</a>', '<a href="https://plus.google.com/110603974542824315461" target="_blank">'); ?></a>
-				<?php
-				} else { echo ''; } 
-				?>
+		    All Page-Links Plus Modules are now free!
 	    
 	    </div>
 	</div>
