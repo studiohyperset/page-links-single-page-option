@@ -12,6 +12,12 @@ A WordPress pagination plugin that helps users paginate content easily & efficie
 
 == Description ==
 
+= Demo =
+
+Check out the [Page-Links Plus Demo](http://demo.pagelinksplus.com/wp-login.php) &raquo;
+
+= About PLP =
+
 [vimeo http://vimeo.com/109187562]
 
 While WordPress' [&#60;!--nextpage--&#62; quicktag](http://codex.wordpress.org/Write_Post_SubPanel#Quicktags) and [wp_link_pages() function](http://codex.wordpress.org/Function_Reference/wp_link_pages) make integrating page links rather effortless, WordPress doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. 
