@@ -110,7 +110,7 @@ class SH_ScrollingPagination_Functions {
 		if (!empty($args)) {
 			$link_wrapper = $args['link_wrapper'];
 			$link_class = "";
-			$link_classes[0] = $current_class;
+			$link_classes[0] = '';
 			$link_classes[1] = $args['link_wrapper_class'];
 			$link_class = " class=\"" . trim(implode(" ", $link_classes)) . "\"";
 			if ($link_wrapper) {

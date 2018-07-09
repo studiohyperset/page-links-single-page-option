@@ -98,16 +98,25 @@ class SH_AutoPag_Functions {
 			<option value="ignore" <?php if ($value == "ignore") echo "SELECTED"; ?>><?php _e("Ignore inline &lt;!--nextpage--&gt; tags.", SH_PAGE_LINKS_DOMAIN); ?></option>
 			<option value="noignore" <?php if ($value == "noignore") echo "SELECTED"; ?>><?php _e("Accomodate inline &lt;!--nextpage--&gt; tags.", SH_PAGE_LINKS_DOMAIN); ?></option>
 		</select>
+        <br /><br />
+        <?php
+        $value = get_post_meta($post->ID,"single_not_paginate",true);
+        $postType = get_post_type_object(get_post_type($post));
+        $ptype = '';
+        if ($postType)
+            $ptype = $postType->labels->singular_name;
+        ?>
+        <input type="checkbox" id="single_not_paginate" name="single_not_paginate" value="yes" <?php checked( 'yes', $value, true ); ?> /><label for="single_not_paginate"><?php _e("Don't paginate this", SH_PAGE_LINKS_DOMAIN); echo ' ' . strtolower($ptype); ?></label>
 		<?php
 	}
 	
     public function pagination_metabox_render_save($post_id) {
-		global $post;
 		
 		if ( ! isset( $_POST['pagination_override'] ) || ! wp_verify_nonce( $_POST['pagination_override'], plugin_basename( __FILE__ ) ) )
 			return;
 		
-		update_post_meta($post->ID, 'single_override_pagination', $_POST['single_override_pagination']);
+		update_post_meta($post_id, 'single_override_pagination', $_POST['single_override_pagination']);
+		update_post_meta($post_id, 'single_not_paginate', $_POST['single_not_paginate']);
 	}
 
 
@@ -150,6 +159,11 @@ class SH_AutoPag_Functions {
      */
     public function add_pagination($content) {
         global $sh_page_links, $auto_paged, $post, $sh_single_view, $pages_count;
+
+        //Check if is set to ignore pagination
+        if (get_post_meta( $post->ID, 'single_not_paginate', true ) == 'yes')
+            return $content;
+
 		$options = $sh_page_links->get_options();
 		
         $content = str_replace("<!--nextpage-->", "", $content);
@@ -310,23 +324,23 @@ class SH_AutoPag_Functions {
             if ($break_on < 1)
                 $break_on == 1;
             $excess = $paragraph_count%$page_count;
-            $modified_exploded_content = $array;
+            $modified_exploded_content = array();
             foreach ($content_pages as $page) {
                 $i++;
                 if ($i > $break_on) {
                     if ($excess > 0) {
                         $excess--;
-                        $modified_exploded_content[$j] .= $page . "\n<!--sh_nextpage-->";
+                        $modified_exploded_content[$j] = $page . "\n<!--sh_nextpage-->";
                         $j++;
                         $i = 0;
                         continue;
                     } else {
-                        $modified_exploded_content[$j] .= "\n<!--sh_nextpage-->";
+                        $modified_exploded_content[$j] = "\n<!--sh_nextpage-->";
                     }
                     $i = 1;
                     $j++;
                 }
-                $modified_exploded_content[$j] .= $page;
+                $modified_exploded_content[$j] = $page;
             }
 
         } elseif ($options['break_type'] == 2) {

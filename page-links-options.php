@@ -257,175 +257,180 @@ class SH_PageLinks_Options
      * @param mixed $option Current option to output
      * @return string
      */
-    public function settings_field_cb($option)
+    public static function settings_field_cb($option)
     {
         global $sh_page_links;
         $option_str    = "";
 
         $option_values = $sh_page_links->get_options();
-        if ($option['type'] == 'checkbox') {
-            $value = !empty($option_values[$option['section']][$option['name']])
-                        ? intval($option_values[$option['section']][$option['name']])
-                        : 0;
-            $option_str = "<label for=\"{$option['id']}\">"
-                        . "<input type=\"checkbox\" "
-                        . "name=\"sh_page_links_options[{$option['section']}]"
-                        . "[{$option['name']}]\" "
-                        . "id=\"{$option['id']}\" "
-                        . "value=\"{$option['default']}\" "
-                        . checked($option['default'], $value, false)
-                        . " /></label> </td><td class='description'>{$option['description']}";
-        }
-        if ($option['type'] == 'select') {
-            $value = !empty($option_values[$option['section']][$option['name']])
-                        ? intval($option_values[$option['section']][$option['name']])
-                        : 0;
-            $option_str = "<select "
-                        . "name=\"sh_page_links_options[{$option['section']}]"
-                        . "[{$option['name']}]\" "
-                        . "id=\"{$option['id']}\" >";
-
-            foreach ($option['choices'] as $key => $choice) {
-                $option_str .= '<option value="'. $key .'" '. selected( $key, $value, false ) .'>'. $choice . '</option>';
+        if (isset($option['type'])) {
+            if ($option['type'] == 'checkbox') {
+                $value = !empty($option_values[$option['section']][$option['name']])
+                            ? intval($option_values[$option['section']][$option['name']])
+                            : 0;
+                $description = isset($option['description']) ? $option['description'] : '';
+                $option_str = "<label for=\"{$option['id']}\">"
+                            . "<input type=\"checkbox\" "
+                            . "name=\"sh_page_links_options[{$option['section']}]"
+                            . "[{$option['name']}]\" "
+                            . "id=\"{$option['id']}\" "
+                            . "value=\"{$option['default']}\" "
+                            . checked($option['default'], $value, false)
+                            . " /></label> </td><td class='description'>{$description}";
             }
-            $option_str .= "</select></td><td class='description'>{$option['description']}";
-        }
+            if ($option['type'] == 'select') {
+                $value = !empty($option_values[$option['section']][$option['name']])
+                            ? intval($option_values[$option['section']][$option['name']])
+                            : 0;
+                $description = isset($option['description']) ? $option['description'] : '';
+                $option_str = "<select "
+                            . "name=\"sh_page_links_options[{$option['section']}]"
+                            . "[{$option['name']}]\" "
+                            . "id=\"{$option['id']}\" >";
 
-        if ($option['type'] == 'multicheckcp') {
-			$cps =  get_post_types(array('public' => true), 'objects');
-            
-			try {
-                @$value = unserialize($option_values[$option['section']][$option['name']]);  
-            } catch (Exception $e) {
-                $value = array('A');
+                foreach ($option['choices'] as $key => $choice) {
+                    $option_str .= '<option value="'. $key .'" '. selected( $key, $value, false ) .'>'. $choice . '</option>';
+                }
+                $option_str .= "</select></td><td class='description'>{$description}";
             }
 
-			$i = 0;
-            $customposts = "";
-			foreach ($cps as $cp ) {
+            if ($option['type'] == 'multicheckcp') {
+                $cps =  get_post_types(array('public' => true), 'objects');
+                
+                try {
+                    @$value = unserialize($option_values[$option['section']][$option['name']]);  
+                } catch (Exception $e) {
+                    $value = array('A');
+                }
 
-                if ($cp->name=="attachment")
-                    continue;
+                $i = 0;
+                $customposts = "";
+                foreach ($cps as $cp ) {
 
-				$i++;
-                $option_str_holder = "";
-				
-                $checked = " ";
-				if (is_array($value))
-					if (in_array($cp->name, $value)) $checked = "CHECKED ";
-				else
-					if ($cp->name == $value) $checked = "CHECKED ";
+                    if ($cp->name=="attachment")
+                        continue;
 
-				$option_str_holder .= "<label for=\"{$option['id']}_$i\">"
-                        . "<input type=\"checkbox\" "
+                    $i++;
+                    $option_str_holder = "";
+                    
+                    $checked = " ";
+                    if (is_array($value))
+                        if (in_array($cp->name, $value)) $checked = "CHECKED ";
+                    else
+                        if ($cp->name == $value) $checked = "CHECKED ";
+
+                    $option_str_holder .= "<label for=\"{$option['id']}_$i\">"
+                            . "<input type=\"checkbox\" "
+                            . "name=\"sh_page_links_options[{$option['section']}]"
+                            . "[{$option['name']}][]\" "
+                            . "id=\"{$option['id']}_$i\" "
+                            . "class=\"{$option['name']}\" "
+                            . "value=\"". $cp->name ."\" "
+                            . $checked
+                            . " /> ". $cp->labels->name
+                            . "</label><BR />";
+
+                    if ($cp->name=="page")
+                        $first = $option_str_holder;
+                    elseif ($cp->name=="post")
+                        $second = $option_str_holder;
+                    else
+                        $option_str .= $option_str_holder;
+                }
+                $option_str = $first . $second . $option_str . "<input type=\"hidden\" "
                         . "name=\"sh_page_links_options[{$option['section']}]"
                         . "[{$option['name']}][]\" "
                         . "id=\"{$option['id']}_$i\" "
-                        . "class=\"{$option['name']}\" "
-						. "value=\"". $cp->name ."\" "
-                        . $checked
-                        . " /> ". $cp->labels->name
-                        . "</label><BR />";
-
-                if ($cp->name=="page")
-                    $first = $option_str_holder;
-                elseif ($cp->name=="post")
-                    $second = $option_str_holder;
-                else
-                    $option_str .= $option_str_holder;
-			}
-			$option_str = $first . $second . $option_str . "<input type=\"hidden\" "
-					. "name=\"sh_page_links_options[{$option['section']}]"
-					. "[{$option['name']}][]\" "
-					. "id=\"{$option['id']}_$i\" "
-					. "value=\"_empty_\" ";
-						
-        }
-        
-        if ($option['type'] == 'text') {
-            $description = !empty($option['description'])
-                           ? "<span class=\"description\">{$option['description']}</span>" : '';
-            $value = empty($option_values[$option['section']][$option['name']])
-                        ? $option['default']
-                        : esc_attr($option_values[$option['section']][$option['name']]);
-            $option_str = "<label for=\"{$option['id']}\">"
-                        . "<input type=\"text\" "
-                        . "name=\"sh_page_links_options[{$option['section']}]"
-                        . "[{$option['name']}]\" "
-                        . "id=\"{$option['id']}\" "
-                        . "value=\"{$value}\" "
-                        . " /></label> </td><td class='description'>{$option['description']}";
-        }
-
-        if ($option['type'] == 'phpstatus') {
+                        . "value=\"_empty_\" ";
+                            
+            }
             
-            $option_str = '<div class="phpstatus">';
-
-            if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-                $option_str .= '<li>'. __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong></li>';
-            } else {
-                $option_str .= '<li class="false">' . __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong> <em>' . __("You'll want to make sure your server's running the latest version of PHP. The demo site runs the 'bleeding edge' release, but as long as your environment runs the latest version of 5.3+, PLP will operate as intended.<br /><br />Please contact your host for more information.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
+            if ($option['type'] == 'text') {
+                $description = !empty($option['description'])
+                            ? "<span class=\"description\">{$option['description']}</span>" : '';
+                $value = empty($option_values[$option['section']][$option['name']])
+                            ? $option['default']
+                            : esc_attr($option_values[$option['section']][$option['name']]);
+                $description = isset($option['description']) ? $option['description'] : '';
+                $option_str = "<label for=\"{$option['id']}\">"
+                            . "<input type=\"text\" "
+                            . "name=\"sh_page_links_options[{$option['section']}]"
+                            . "[{$option['name']}]\" "
+                            . "id=\"{$option['id']}\" "
+                            . "value=\"{$value}\" "
+                            . " /></label> </td><td class='description'>{$description}";
             }
 
-            global $wp_version;
-            if (version_compare($wp_version, '3.0.0') >= 0){
-                $option_str .= '<li>'. __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong></li>';
-            } else {
-                $option_str .= '<li class="false">' . __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong> <em>' . __("The Page-Links Plus demo site always runs the latest WordPress nightly release. However, as long as your site runs WP 3.0+, PLP will operate as intended.<br /><br />Please update your version of WordPress as soon as possible.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
-            }
+            if ($option['type'] == 'phpstatus') {
+                
+                $option_str = '<div class="phpstatus">';
 
-            $dir = get_stylesheet_directory() .'/style.css';
-            if (@fopen($dir, 'r')) {
-                $dir = get_stylesheet_directory() .'/single.php';
-                $handle = @fopen($dir, 'r');
-                if ($handle) {
-                    $contents = fread($handle, filesize($dir));
-                    if (strpos($contents, "wp_link_pages")) {
-                        $option_str .= '<li>' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Found", SH_PAGE_LINKS_DOMAIN) . '</strong></li>';
+                if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+                    $option_str .= '<li>'. __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong></li>';
+                } else {
+                    $option_str .= '<li class="false">' . __("PHP Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . PHP_VERSION . '</strong> <em>' . __("You'll want to make sure your server's running the latest version of PHP. The demo site runs the 'bleeding edge' release, but as long as your environment runs the latest version of 5.3+, PLP will operate as intended.<br /><br />Please contact your host for more information.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
+                }
+
+                global $wp_version;
+                if (version_compare($wp_version, '3.0.0') >= 0){
+                    $option_str .= '<li>'. __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong></li>';
+                } else {
+                    $option_str .= '<li class="false">' . __("WordPress Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . $wp_version . '</strong> <em>' . __("The Page-Links Plus demo site always runs the latest WordPress nightly release. However, as long as your site runs WP 3.0+, PLP will operate as intended.<br /><br />Please update your version of WordPress as soon as possible.", SH_PAGE_LINKS_DOMAIN) . '</em></li>';
+                }
+
+                $dir = get_stylesheet_directory() .'/style.css';
+                if (@fopen($dir, 'r')) {
+                    $dir = get_stylesheet_directory() .'/single.php';
+                    $handle = @fopen($dir, 'r');
+                    if ($handle) {
+                        $contents = fread($handle, filesize($dir));
+                        if (strpos($contents, "wp_link_pages")) {
+                            $option_str .= '<li>' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Found", SH_PAGE_LINKS_DOMAIN) . '</strong></li>';
+                        } else {
+                            $option_str .= '<li class="false">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+                        }
                     } else {
-                        $option_str .= '<li class="false">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+                        $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("File not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
                     }
                 } else {
-                    $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("File not Found", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
+                    $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Can't access theme files", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
                 }
-            } else {
-                $option_str .= '<li class="null">' . __("Pagination Function", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . __("Can't access theme files", SH_PAGE_LINKS_DOMAIN) . '</strong> <em>' . sprintf(__("You'll want to verify your theme uses the %s function, which is the preferred, best-practices WP pagination function.<br /><br />Usually, this function appears in the single.php template, but it might also be elsewhere. If your theme doesn't include this function, you'll want to swap it in.", SH_PAGE_LINKS_DOMAIN), '<a target="_blank" href="http://codex.wordpress.org/Function_Reference/wp_link_pages">wp_link_pages</a>') . '</em></li>';
-            }
 
-            $updates = get_site_transient('update_plugins');
-            
-            if (isset($updates->response['page-links-single-page-option/page-links.php'])) {
-                $option_str .= '<li class="false">' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['page-links-single-page-option/page-links.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
-            } else {
-                $option_str .= '<li>' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong></li>';
-            }
-            
-
-            if (class_exists('SH_PageLinks_PagStyles_Bootstrap')) {
-                if (!isset($updates->response['pagination-styles/pagination-styles.php'])) {
-                    $option_str .= '<li>' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong></li>';
+                $updates = get_site_transient('update_plugins');
+                
+                if (isset($updates->response['page-links-single-page-option/page-links.php'])) {
+                    $option_str .= '<li class="false">' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['page-links-single-page-option/page-links.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
                 } else {
-                    $option_str .= '<li class="false">' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['pagination-styles/pagination-styles.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                    $option_str .= '<li>' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong></li>';
                 }
-            }
+                
 
-            if (class_exists('SH_PageLinks_AutoPag_Bootstrap')) {
-                if (!isset($updates->response['auto-pagination/auto-pagination.php'])) {
-                    $option_str .= '<li>' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong></li>';
-                } else {
-                    $option_str .= '<li class="false">' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['auto-pagination/auto-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                if (class_exists('SH_PageLinks_PagStyles_Bootstrap')) {
+                    if (!isset($updates->response['pagination-styles/pagination-styles.php'])) {
+                        $option_str .= '<li>' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong></li>';
+                    } else {
+                        $option_str .= '<li class="false">' . __("Pagination Controls Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGSTYLES_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['pagination-styles/pagination-styles.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                    }
                 }
-            }
 
-            if (class_exists('SH_PageLinks_ScrollingPagination_Bootstrap')) {
-                if (!isset($updates->response['scrolling-pagination/scrolling-pagination.php'])) {
-                    $option_str .= '<li>' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong></li>';
-                } else {
-                    $option_str .= '<li class="false">' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['scrolling-pagination/scrolling-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                if (class_exists('SH_PageLinks_AutoPag_Bootstrap')) {
+                    if (!isset($updates->response['auto-pagination/auto-pagination.php'])) {
+                        $option_str .= '<li>' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong></li>';
+                    } else {
+                        $option_str .= '<li class="false">' . __("Auto Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_AUTOPAGE_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['auto-pagination/auto-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                    }
                 }
-            }
 
-        }        
+                if (class_exists('SH_PageLinks_ScrollingPagination_Bootstrap')) {
+                    if (!isset($updates->response['scrolling-pagination/scrolling-pagination.php'])) {
+                        $option_str .= '<li>' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong></li>';
+                    } else {
+                        $option_str .= '<li class="false">' . __("Scrolling Pagination Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_SCROLLINGPAG_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['scrolling-pagination/scrolling-pagination.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
+                    }
+                }
+
+            }
+        }
         
         echo $option_str;
     }
