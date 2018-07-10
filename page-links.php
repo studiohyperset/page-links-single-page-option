@@ -146,15 +146,20 @@ class SH_PageLinks_Bootstrap {
 		
 		$url = 'https://api.github.com/repos/studiohyperset/page-links-single-page-option/tags';
 		
-        //$response = get_transient(md5($url)); // Note: WP transients fail if key is long than 45 characters
-        $response = array(); // Note: WP transients fail if key is long than 45 characters
+        $response = get_transient(md5($url)); // Note: WP transients fail if key is long than 45 characters
         
 		if(empty($response)){
             $raw_response = wp_remote_get($url, array('sslverify' => false, 'timeout' => 10));
 			if ( is_wp_error( $raw_response ) ){
 				return;
             }
+
+            //Error. Probably Exceed Limit
             $response = json_decode($raw_response['body']);
+            if (isset($response->message)) {
+                unset($option->response[$plugin]);
+                return $option;
+            }
             $response = $response[0];
 			
 			//set cache
