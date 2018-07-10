@@ -314,7 +314,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
  <?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
 <iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } else { } ?>		    
 
-		    All Page-Links Plus Modules are now free!
+		    
 	    
 	    </div>
 	</div>
