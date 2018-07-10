@@ -139,40 +139,45 @@ class SH_PageLinks_Bootstrap {
 	 */	
 	public function checkForUpdate($option) {
 		
-		$slug = "page-links";
-		$updateUrl = 'http://svn.sh/update/update.php?name='. $slug;
-		
-		$raw = get_transient($slug . "_update");
-        //var_dump($raw); die();
-		if(!$raw) {
-			$raw = wp_remote_get($updateUrl);
-			set_transient($slug . "_update", $raw, 28800);
-		}
-		if ( (is_wp_error($raw)) || (200 != wp_remote_retrieve_response_code($raw))) {
-			return $option;
-		}
-		
-		$info = json_decode(wp_remote_retrieve_body($raw));
-		if(!$info) {
-			return $option;
-		}
-		$plugin = plugin_basename(__FILE__);
-		if(!is_object($option->response[$plugin])) {
-			$option->response[$plugin] = new stdClass();
-		}
 		
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		$data = get_plugin_data( __FILE__ );
-		if(!$info->is_valid || version_compare($data['Version'], $info->version, '>=')) {
+
+        $gitUriValue = 'https://github.com/studiohyperset/page-links-single-page-option/';
+		
+		$url = 'https://api.github.com/repos/studiohyperset/page-links-single-page-option/tags';
+		
+        //$response = get_transient(md5($url)); // Note: WP transients fail if key is long than 45 characters
+        $response = array(); // Note: WP transients fail if key is long than 45 characters
+        
+		if(empty($response)){
+            $raw_response = wp_remote_get($url, array('sslverify' => false, 'timeout' => 10));
+			if ( is_wp_error( $raw_response ) ){
+				return;
+            }
+            $response = json_decode($raw_response['body']);
+            $response = $response[0];
+			
+			//set cache
+			set_transient(md5($url), $response, 6000);
+		}
+		
+        // check and generate download link
+        $data = get_plugin_data( __FILE__ );
+        $plugin = plugin_basename(__FILE__);
+		if(version_compare($data['Version'],  $response->name, '>=')){
+			// up-to-date!  
 			unset($option->response[$plugin]);
 		} else {
-			$option->response[$plugin]->url = $updateUrl;
-			$option->response[$plugin]->slug = $slug;
-			$option->response[$plugin]->package = $info->url;
-			$option->response[$plugin]->new_version = $info->version;
-			$option->response[$plugin]->id = "0";
-		}
-		return $option;
+            $option->response[$plugin] = (object)array(
+                'url' => $gitUriValue,
+                'slug' => 'page-links-single-page-option',
+                'package' => $response->zipball_url,
+                'new_version' => $response->name,
+                'id' => "0"
+            );
+        }
+
+        return $option;
 	}
 }
 
