@@ -1,7 +1,7 @@
 === Page-Links Plus WordPress Pagination Plugin ===
 Contributors: studiohyperset
 Donate link: https://pagelinksplus.com
-Tags: pages, single page, navigation, pagination, single page
+Tags: pages, single page, navigation, pagination, paginate
 Requires at least: 3.0
 Tested up to: 4.9.7
 Stable tag: 2.4.2
