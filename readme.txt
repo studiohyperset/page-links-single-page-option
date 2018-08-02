@@ -12,6 +12,8 @@ A WordPress pagination plugin that helps users paginate content easily & efficie
 
 == Description ==
 
+Page-Links Plus is a WordPress pagination plugin.
+
 = Demo =
 
 Check out the [Page-Links Plus Demo](http://demo.pagelinksplus.com/wp-login.php) &raquo;
@@ -20,7 +22,7 @@ Check out the [Page-Links Plus Demo](http://demo.pagelinksplus.com/wp-login.php)
 
 [vimeo http://vimeo.com/109187562]
 
-Page-Links Plus is a WordPress pagination plugin. While WordPress' [&#60;!--nextpage--&#62; quicktag](http://codex.wordpress.org/Write_Post_SubPanel#Quicktags) and [wp_link_pages() function](http://codex.wordpress.org/Function_Reference/wp_link_pages) make integrating page links rather effortless, WordPress doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. 
+While WordPress' [&#60;!--nextpage--&#62; quicktag](http://codex.wordpress.org/Write_Post_SubPanel#Quicktags) and [wp_link_pages() function](http://codex.wordpress.org/Function_Reference/wp_link_pages) make integrating page links rather effortless, WordPress doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. 
 
 The Single Page module also serves as the basic framework for the other [Page-Links Plus modules](https://pagelinksplus.com/).
 
