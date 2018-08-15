@@ -60,24 +60,34 @@ class SH_AutoPag_Functions {
         global $post, $sh_page_links;
         
         if (!$post->post_content || $post->post_content == '')
-        	return;
-        	
+            return;
+            
         $options =  $sh_page_links->get_options();
-        $auto_options = $options['auto_pagination'];
 		
 		$option = get_post_meta($post->ID,"single_override_pagination",true);
-		$ignore = false;
-		if ($option == false || $option == "default") {
-			if ($auto_options['inline_nextpage'] == 1)
+        $ignore = false;
+        
+		if ($option == false || $option == "default" || $option == '') {
+			if (isset($options['auto_pagination']) && $options['auto_pagination'] == 1)
 				$ignore = true;
 		} else {
 			if ($option == "ignore")
 				$ignore = true;
-		}
-		if ($ignore)
-			$post->post_content = str_replace("<!--nextpage-->", "", $post->post_content);
-		else
-			$post->post_content = str_replace("<!--nextpage-->", "<!--sh_nextpage-->", $post->post_content);
+        }
+        
+		if ($ignore) {
+            $post->post_content = str_replace("<!--nextpage-->", "", $post->post_content);
+        } else {
+            $post->post_content = str_replace("<!--nextpage-->", "<!--sh_nextpage-->", $post->post_content);
+        }
+
+        if (get_post_meta( $post->ID, 'single_not_paginate', true ) != 'yes') {
+            add_filter('body_class', function($classes){
+                $classes[] = 'plp-on';
+                return $classes;
+            });
+        }
+
     }
 
     public function pagination_metabox() {
