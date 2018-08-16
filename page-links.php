@@ -41,6 +41,13 @@ $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'single_page_styles' );
 
 
+function sh_wp_link_page($i, $class = '', $attr = '') {
+
+    return str_replace('href=', $attr . ' class="'. $class .'" href=', _wp_link_page($i) );
+    
+}
+
+
 include_once 'page-links-install.php';
 include_once 'page-links-options.php';
 include_once 'single-view/single-view.php';

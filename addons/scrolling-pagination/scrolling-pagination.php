@@ -45,9 +45,13 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
     protected static $default_options = array(
         'pages_to_scroll'  => '3',
         'nextpagelink'     => 'Next &rarr;',
+        'nextpageclass'     => '',
         'previouspagelink' => '&larr; Previous',
+        'previouspageclass' => '&larr; Previous',
 		'firstpage'        => '',
+		'firstpageclass'        => '',
 		'lastpage'         => '',
+		'lastpageclass'         => '',
 		'elipsis'          => '',
 	);
     /**

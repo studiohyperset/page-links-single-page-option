@@ -103,8 +103,8 @@ class SH_PageLinks_Options
         wp_enqueue_script('jquery-ui', null, array('jquery'));
         wp_enqueue_script('jquery-ui-tabs', null, array('jquery'));
 		
-		wp_register_script('admin-menu-current', plugins_url('js/admin-menu-current.min.js', __FILE__),array('jquery'));	
-        wp_register_script('pagination_option_validation', plugins_url('js/pagination_option_validation.min.js', __FILE__),array('jquery'));
+		wp_register_script('admin-menu-current', plugins_url('js/admin-menu-current.min.js', __FILE__),array('jquery'),SH_PAGE_LINKS_VER);	
+        wp_register_script('pagination_option_validation', plugins_url('js/pagination_option_validation.min.js', __FILE__),array('jquery'), SH_PAGE_LINKS_VER);
 
         wp_enqueue_script('admin-menu-current');
 		wp_enqueue_script('pagination_option_validation');

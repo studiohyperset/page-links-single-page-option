@@ -59,7 +59,7 @@ class SH_ScrollingPagination_Functions {
 			
 			$first_num = 1;
 			$first_num = ' '
-						. _wp_link_page($first_num)
+						. sh_wp_link_page($first_num, $r['firstpageclass'])
 						. $r['link_before']
 						. $r['firstpage']
 						. $r['link_after']
@@ -71,7 +71,7 @@ class SH_ScrollingPagination_Functions {
             if ($page > 1) {
                 $prev_num = $page - 1;
                 $prev_link = ' '
-						. _wp_link_page($prev_num)
+						. sh_wp_link_page($prev_num, $r['previouspageclass'])
 						. $r['link_before']
                         . $r['previouspagelink']
                         . $r['link_after'] 
@@ -84,7 +84,7 @@ class SH_ScrollingPagination_Functions {
             if ($page < $pages) {
                 $next_num = $page + 1;
                 $next_link = ' '
-						. _wp_link_page($next_num)
+						. sh_wp_link_page($next_num, $r['nextpageclass'])
 						. $r['link_before']
                         . $r['nextpagelink']
                         . $r['link_after'] 
@@ -95,7 +95,7 @@ class SH_ScrollingPagination_Functions {
 			
 			$last_num = $pages;
             $last_num = ' '
-						. _wp_link_page($last_num)
+						. sh_wp_link_page($last_num, $r['lastpageclass'])
 						. $r['link_before']
 						. $r['lastpage']
 						. $r['link_after']

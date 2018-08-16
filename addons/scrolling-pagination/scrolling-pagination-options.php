@@ -65,34 +65,66 @@ class SH_ScrollingPagination_Options
                 ),
                 'nextpagelink' => array(
                     'id'      => 'nextpagelink',
-                    'title'   => '"'. __('nextpagelink', SH_PAGE_LINKS_DOMAIN) . '"',
+                    'title'   => __('Next Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
                     'default' => __('Next &rarr;'),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
+                'nextpageclass' => array(
+                    'id'      => 'nextpageclass',
+                    'title'   => __('Next Page Class', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'formatted',
+                    'default' => '',
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
                 'previouspagelink' => array(
                     'id'      => 'previouspagelink',
-                    'title'   => '"'. __('previouspagelink', SH_PAGE_LINKS_DOMAIN) . '"',
+                    'title'   => __('Previous Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
                     'default' => __('&larr; Previous'),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
+                'previouspageclass' => array(
+                    'id'      => 'previouspageclass',
+                    'title'   => __('Previous Page Class', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'formatted',
+                    'default' => '',
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
 				'firstpage' => array(
                     'id'      => 'firstpage',
-                    'title'   => '"'. __('firstpage', SH_PAGE_LINKS_DOMAIN) . '"',
+                    'title'   => __('First Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
                     'default' => __('First'),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
+				'firstpageclass' => array(
+                    'id'      => 'firstpageclass',
+                    'title'   => __('First Page Class', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'formatted',
+                    'default' => '',
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
 				'lastpage' => array(
                     'id'      => 'lastpage',
-                    'title'   => '"'. __('lastpage', SH_PAGE_LINKS_DOMAIN) . '"',
+                    'title'   => __('Last Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
                     'default' => __('Last'),
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
+				'lastpageclass' => array(
+                    'id'      => 'lastpageclass',
+                    'title'   => __('Last Page Class', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'formatted',
+                    'default' => '',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
 				'elipsis' => array(

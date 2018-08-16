@@ -292,7 +292,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 </script>
 <div class="wrap">
 	
-    <?php screen_icon(); ?>
     <h2>Page-Links Plus</h2>
 	<div class="border"></div>
 	<div id="logo-content">
