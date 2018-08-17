@@ -4,7 +4,7 @@ Donate link: https://pagelinksplus.com
 Tags: pages, single page, navigation, pagination, paginate
 Requires at least: 3.0
 Tested up to: 4.9.7
-Stable tag: 2.4.2
+Stable tag: 2.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,10 @@ Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](
 Review the PLP change log here: [https://pagelinksplus.com/documentation-and-resources/](https://pagelinksplus.com/documentation-and-resources/)
 
 == Upgrade Notice ==
+
+= 2.5 (8/17/18)
+
+Added unique class support for nextpagelink, previouspagelink, firstpage, lastpage, and scroll marker. Added "plp-on" class to <body> on PLP paginated pages. Fixed minor Pagination Controls output error.
 
 = 2.4.2 (7/10/18)
 
