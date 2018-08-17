@@ -59,23 +59,27 @@ class SH_ScrollingPagination_Functions {
 			
 			$first_num = 1;
 			$first_num = ' '
+						. $r['link_before_outter']
 						. sh_wp_link_page($first_num, $r['firstpageclass'])
 						. $r['link_before']
 						. $r['firstpage']
 						. $r['link_after']
                         . '</a>'
+						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
 			
 			$prev_link = "";
             if ($page > 1) {
                 $prev_num = $page - 1;
-                $prev_link = ' '
+				$prev_link = ' '
+						. $r['link_before_outter']
 						. sh_wp_link_page($prev_num, $r['previouspageclass'])
 						. $r['link_before']
                         . $r['previouspagelink']
                         . $r['link_after'] 
 						. '</a>'
+						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
             }
@@ -83,23 +87,27 @@ class SH_ScrollingPagination_Functions {
 			$next_link = "";
             if ($page < $pages) {
                 $next_num = $page + 1;
-                $next_link = ' '
+				$next_link = ' '
+						. $r['link_before_outter']
 						. sh_wp_link_page($next_num, $r['nextpageclass'])
 						. $r['link_before']
                         . $r['nextpagelink']
                         . $r['link_after'] 
 						. '</a>'
+						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
             }
 			
 			$last_num = $pages;
             $last_num = ' '
+						. $r['link_before_outter']
 						. sh_wp_link_page($last_num, $r['lastpageclass'])
 						. $r['link_before']
 						. $r['lastpage']
 						. $r['link_after']
-                        . '</a>';
+                        . '</a>'
+						. $r['link_after_outter'];
 						
         }
         $output = "";
@@ -167,18 +175,22 @@ class SH_ScrollingPagination_Functions {
             if ( ($options['pagination_styles']['use_ajax']!=0) || ( $i != $page || $singlepage ) ) {
 			
 			 	$link_html_formatted = " "
+				 		. $r['link_before_outter']
 						. $link_html
                         . $link_wrapper_open
 						. str_replace(array('%page%','%title%'), array($i,$title), $args['pagelink'])
 						. $link_wrapper_close
                         . "</a>"
+						. $r['link_after_outter']
 						. " "
 						. $args['seperator'];
 					
 			} else {
-				$link_html_formatted = 	' <span class="plp-active-page">'
+				$link_html_formatted = 	$r['link_before_outter']
+										. '<span class="plp-active-page">'
 										. str_replace(array('%page%','%title%'), array($i,$title), $args['pagelink'])
 										. "</span> "
+										. $r['link_after_outter']
 										. $args['seperator'];
 				
 			}

@@ -111,15 +111,23 @@ function processChanges($) {
 
 function processChangesAddLink(page) {
 
-	var changes = "";
-	var wrap = jQuery("#link-wrapper").val();
+	var changes = "",
+		outterWrap = jQuery("#link-wrapper-outter").val(),
+		wrap = jQuery("#link-wrapper").val();
 
 	if (wrap != "")
-		changes = '<' + wrap + ' class="' + jQuery("#link-wrapper-class").val() + '">';
+		page = page.replace('>', '><' + wrap + ' class="' + jQuery("#link-wrapper-class").val() + '">');
+
+	if (wrap != "")
+		page = page.replace('</a>', '</' + wrap + '></a>');
+
+	if (outterWrap != "")
+		changes += '<' + outterWrap + ' class="' + jQuery("#link-wrapper-outter-class").val() + '">';
 
 	changes += page;
-	if (wrap != "")
-		changes += '</' + wrap + '>';
+
+	if (outterWrap != "")
+		changes += '</' + outterWrap + '>';
 
 	return changes;
 

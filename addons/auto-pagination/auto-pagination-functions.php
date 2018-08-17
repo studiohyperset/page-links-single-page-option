@@ -45,8 +45,10 @@ class SH_AutoPag_Functions {
         $args['wrapper_tag'] = 'div';
         $args['wrapper_class'] = 'page-link';
         $args['wrapper_id'] = '';
-        $args['link_wrapper'] = 'span';
+        $args['link_wrapper'] = '';
         $args['link_wrapper_class'] = '';
+        $args['link_wrapper_outter'] = '';
+        $args['link_wrapper_outter_class'] = '';
 		
 		return $args;
     }
@@ -420,10 +422,10 @@ class SH_AutoPag_Functions {
             }
 
 			
-            // Set defaults...
+            // Link Wrapper Inner
             $link_wrapper_open = "";
             $link_wrapper_close = "";
-            if (!empty($args)) {
+            if (!empty($args['link_wrapper'])) {
 				$link_wrapper = $args['link_wrapper'];
                 $link_class = " class=\"" . $args['link_wrapper_class'] . "\"";
                 if ($link_wrapper) {
@@ -431,16 +433,31 @@ class SH_AutoPag_Functions {
                     $link_wrapper_close = "</{$link_wrapper}>";
                 }
             }
-        
+
+            // Link Wrapper Outter
+            $link_wrapper_outter_open = "";
+            $link_wrapper_outter_close = "";
+            if (!empty($args['link_wrapper_outter'])) {
+				$link_wrapper = $args['link_wrapper_outter'];
+                $link_class = " class=\"" . $args['link_wrapper_outter_class'] . "\"";
+                if ($link_wrapper) {
+                    $link_wrapper_outter_open = "<{$link_wrapper}{$link_class}>";
+                    $link_wrapper_outter_close = "</{$link_wrapper}>";
+                }
+                
+            }
+
 			
-		 	$link_html_formatted = " "
+            $link_html_formatted = " "
+                    . $link_wrapper_outter_open
 					. $link_html_open
                     . $link_wrapper_open
 					. str_replace(array('%page%','%title%'), array($i,$title), $args['pagelink'])
 					. $link_wrapper_close
                     . $link_html_close
+                    . $link_wrapper_outter_close
 					. " ";
-					
+                  
 			if ($i != $pages)
 				$link_html_formatted .= $args['seperator'];
 			

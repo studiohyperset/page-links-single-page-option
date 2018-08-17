@@ -167,7 +167,26 @@ class SH_PagStyles_Options
                 ),
                 'link_wrapper' => array(
                     'id'      => 'link-wrapper',
-                    'title'   => __('Link Wrapper Element', SH_PAGE_LINKS_DOMAIN),
+                    'title'   => __('Inner Link Wrapper Element', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'html',
+                    'default' => '',
+                    'description' => __('Wraps each pagination link text in an HTML element. (See "Sample Anatomy" below.) The single-page option and the scrolling ellipsis ("...") are unaffected. Defaults to (blank).',
+                                        SH_PAGE_LINKS_DOMAIN),
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
+                'link_wrapper_class' => array(
+                    'id'      => 'link-wrapper-class',
+                    'title'   => __('Inner Link Wrapper Element Class', SH_PAGE_LINKS_DOMAIN),
+                    'type'    => 'text',
+                    'valid'   => 'html-class',
+                    'default' => '',
+                    'description' => __('Assigns a single CSS class to the inner link wrapper element. The single-page option and the scrolling ellipsis ("...") are unaffected. Defaults to (blank).',SH_PAGE_LINKS_DOMAIN),
+                    'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
+                ),
+                'link_wrapper_outter' => array(
+                    'id'      => 'link-wrapper-outter',
+                    'title'   => __('Outter Link Wrapper Element', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'html',
                     'default' => '',
@@ -175,13 +194,13 @@ class SH_PagStyles_Options
                                         SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-                'link_wrapper_class' => array(
-                    'id'      => 'link-wrapper-class',
-                    'title'   => __('Link Wrapper Element Class', SH_PAGE_LINKS_DOMAIN),
+                'link_wrapper_outter_class' => array(
+                    'id'      => 'link-wrapper-outter-class',
+                    'title'   => __('Outter Link Wrapper Element Class', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'html-class',
                     'default' => '',
-                    'description' => __('Assigns a single CSS class to the link wrapper element. The single-page option and the scrolling ellipsis ("...") are unaffected. Defaults to (blank).',SH_PAGE_LINKS_DOMAIN),
+                    'description' => __('Assigns a single CSS class to the outter link wrapper element. The single-page option and the scrolling ellipsis ("...") are unaffected. Defaults to (blank).',SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
                 /*'archive_pages' => array(

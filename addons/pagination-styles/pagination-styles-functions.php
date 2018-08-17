@@ -41,13 +41,17 @@ class SH_PagStyles_Functions
     {
         
         global $sh_page_links, $auto_paged, $singlepage, $count, $sh_autopag_functions;
+
         $options     = $sh_page_links->get_options();
         $page_styles = $options['pagination_styles'];
+
         // Get plugin defaults
         $page_styles_defaults = SH_PageLinks_PagStyles_Bootstrap::get_default_options();
         $page_styles_args = wp_parse_args($page_styles, $page_styles_defaults);
         $page_styles_args = apply_filters('wp_link_page_styles_args', $page_styles_args);
+
         extract($page_styles_args, EXTR_SKIP);
+
         $new_args = empty($link_pages_args) ? $page_styles_args : $link_pages_args;
         if ($wrapper_tag) {
             $wrapper_class = str_replace(',',' ',$wrapper_class);
@@ -60,6 +64,7 @@ class SH_PagStyles_Functions
                                     . $page_styles_args['before'];
             $new_args['after']  = $page_styles_args['after'] . "</{$wrapper_tag}>";
         }
+
         $new_args['link_before'] = $page_styles_args['link_before'];
         if ($link_wrapper) {
             $wrapper_class = str_replace(',',' ',$wrapper_class);
@@ -72,6 +77,14 @@ class SH_PagStyles_Functions
             $new_args['link_after']  = "</{$link_wrapper}>";
         }
         $new_args['link_after']  .= $page_styles_args['link_after'];
+
+        if ($link_wrapper_outter) {
+            $wrapper_class = str_replace(',',' ',$wrapper_class);
+            $link_wrapper_class  = empty($link_wrapper_outter_class)
+                                    ? "" : " class=\"{$link_wrapper_outter_class}\"";
+            $new_args['link_before_outter'] = "<{$link_wrapper_outter}{$link_wrapper_class}>";
+            $new_args['link_after_outter']  = "</{$link_wrapper_outter}>";
+        }
 
         if ($sh_autopag_functions)
             $new_args['pagelink'] = $pagelink;
