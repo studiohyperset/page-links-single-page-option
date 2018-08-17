@@ -11,7 +11,7 @@
 Plugin Name: Page-Links Plus
 Plugin URI: http://pagelinksplus.com
 Description: While the WordPress <a href="http://codex.wordpress.org/Styling_Page-Links">Page-Link tag</a> makes integrating page links rather effortless, it doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. The Single Page module also serves as the basic framework for the <a href="http://pagelinksplus.com">other Page-Links Plus modules</a>.
-Version: 2.5
+Version: 2.5.1
 Author: Studio Hyperset, Inc.
 Author URI: http://studiohyperset.com
 License: GPL3
@@ -23,7 +23,7 @@ define('SH_PAGE_LINKS_PATH', plugin_dir_path(__FILE__));
 if (!defined('SH_PAGE_LINKS_DOMAIN')){
     define('SH_PAGE_LINKS_DOMAIN', basename(dirname(__FILE__)));
 }
-define('SH_PAGE_LINKS_VER', '2.5');
+define('SH_PAGE_LINKS_VER', '2.5.1');
 
 
 /**
