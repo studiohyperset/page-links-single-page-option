@@ -23,7 +23,7 @@ define('SH_PAGE_LINKS_PATH', plugin_dir_path(__FILE__));
 if (!defined('SH_PAGE_LINKS_DOMAIN')){
     define('SH_PAGE_LINKS_DOMAIN', basename(dirname(__FILE__)));
 }
-define('SH_PAGE_LINKS_VER', '2.4');
+define('SH_PAGE_LINKS_VER', '2.5');
 
 
 /**
