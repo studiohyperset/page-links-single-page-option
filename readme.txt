@@ -8,11 +8,9 @@ Stable tag: 2.4.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-A WordPress pagination plugin that helps users paginate content easily & efficiently.
-
 == Description ==
 
-Page-Links Plus is a WordPress pagination plugin.
+WordPress pagination plugin. Paginate content easily and efficiently. Learn more at [https://pagelinksplus.com](https://pagelinksplus.com).
 
 = Demo =
 
