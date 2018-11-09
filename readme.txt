@@ -1,10 +1,10 @@
-=== Page-Links Plus WordPress Pagination Plugin ===
+=== WordPress Pagination Plugin: Page-Links Plus ===
 Contributors: studiohyperset
 Donate link: https://pagelinksplus.com
 Tags: pages, single page, navigation, pagination, paginate
 Requires at least: 3.0
-Tested up to: 4.9.7
-Stable tag: 2.5.1
+Tested up to: 5.0
+Stable tag: 2.4.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,8 +50,7 @@ See [https://pagelinksplus.com/documentation-and-resources/](https://pagelinkspl
 * Read detailed [installation instructions](http://pagelinksplus.com/documentation-and-resources/).
 * Browse plugin [resources](https://pagelinksplus.com/documentation-and-resources/).
 * Create a discussion post in the [Page-Links Plus community](https://pagelinksplus.com/forums/).
-* Send the developer a message via Twitter [@studiohyperset](https://twitter.com/studiohyperset) / [#pagelinksplus](https://twitter.com/#!/search/?q=%23pagelinksplus&src=hash), [Facebook](http://www.facebook.com/studiohyperset), or [Google+](https://plus.google.com/u/0/110603974542824315461/).
-* Learn about [other Studio Hyperset WordPress plugins](http://studiohyperset.com/#solutions). 
+* Learn more about [Studio Hyperset](http://studiohyperset.com/). 
 
 == Screenshots ==
 
@@ -66,14 +65,6 @@ Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](
 Review the PLP change log here: [https://pagelinksplus.com/documentation-and-resources/](https://pagelinksplus.com/documentation-and-resources/)
 
 == Upgrade Notice ==
-
-= 2.5.1 (8/17/18)
-
-Minor PEBCAK adjustment.
-
-= 2.5 (8/17/18)
-
-Added unique class support for nextpagelink, previouspagelink, firstpage, lastpage, and scroll marker. Added "plp-on" class to <body> on PLP paginated pages. Fixed minor Pagination Controls output error.
 
 = 2.4.2 (7/10/18)
 
