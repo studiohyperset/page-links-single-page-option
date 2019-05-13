@@ -11,7 +11,7 @@
 Plugin Name: Page-Links Plus
 Plugin URI: http://pagelinksplus.com
 Description: WordPress pagination plugin. Paginate content easily & efficiently.
-Version: 2.5
+Version: 2.5.3
 Author: Studio Hyperset, Inc.
 Author URI: http://studiohyperset.com
 License: GPL3
