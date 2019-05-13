@@ -10,8 +10,8 @@
 /*
 Plugin Name: Page-Links Plus
 Plugin URI: http://pagelinksplus.com
-Description: While the WordPress <a href="http://codex.wordpress.org/Styling_Page-Links">Page-Link tag</a> makes integrating page links rather effortless, it doesn't offer a native single-page option. Addressing this limitation, the basic Page-Links Plus plugin adds this option to WordPress page lists. The Single Page module also serves as the basic framework for the <a href="http://pagelinksplus.com">other Page-Links Plus modules</a>.
-Version: 2.5.1
+Description: WordPress pagination plugin. Paginate content easily & efficiently.
+Version: 2.5
 Author: Studio Hyperset, Inc.
 Author URI: http://studiohyperset.com
 License: GPL3
