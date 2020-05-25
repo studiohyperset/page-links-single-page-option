@@ -72,7 +72,7 @@ class SH_PageLinks_SingleView {
 
         return $newval;
     }
-	
+
 	/**
      * Separate the "Single Page" option, so extensions
 	 * may call it.
@@ -85,7 +85,7 @@ class SH_PageLinks_SingleView {
 	public function add_single_page($sep,$wrap_open,$wrap_close) {
 		global $sh_page_links;
 		$options = $sh_page_links->get_options();
-		
+
 		$singlepage = $singlepage = !empty($_GET['singlepage']) ? 1 : 0;
 
         if ($singlepage == 0) {
@@ -97,16 +97,16 @@ class SH_PageLinks_SingleView {
         }
 
 		$link = 	" "
-					. $sep 
-					. " " 
+					. $sep
+					. " "
 					. "<a data-ajax=\"0\" href=\"{$url}\">"
                     . $wrap_open
                     . $link_text
                     . $wrap_close
                     . "</a>";
-					
+
 		return $link;
-		
+
 	}
 
     /**
@@ -119,7 +119,7 @@ class SH_PageLinks_SingleView {
      * @return string
      */
     public function add_all_pages($content) {
-		
+
         global $multipage, $post, $auto_paged, $singlepage, $scrolling_paged;
 
         $singlepage = !empty($_GET['singlepage']) ? 1 : 0;

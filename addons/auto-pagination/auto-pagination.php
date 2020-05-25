@@ -71,7 +71,7 @@ class SH_PageLinks_AutoPag_Bootstrap {
     public static function init() {
 
         global $sh_autopag_options, $sh_autopag_functions;
-        
+
         $sh_autopag_options = new SH_AutoPag_Options();
         $sh_autopag_functions = new SH_AutoPag_Functions();
 
@@ -87,11 +87,11 @@ class SH_PageLinks_AutoPag_Bootstrap {
      */
     public static function set_options() {
         $options = get_option('sh_page_links_options');
-		
+
         if (empty($options['auto_pagination'])) {
             $options['auto_pagination'] = self::get_default_options();
-        }		
-		
+        }
+
         self::$options = $options;
     }
 
@@ -103,7 +103,7 @@ class SH_PageLinks_AutoPag_Bootstrap {
      * @return array
     */
     public function get_options() {
-	
+
         return self::$options;
     }
 

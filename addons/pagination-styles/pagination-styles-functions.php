@@ -39,7 +39,7 @@ class SH_PagStyles_Functions
      */
     public function add_arg_values($link_pages_args)
     {
-        
+
         global $sh_page_links, $auto_paged, $singlepage, $count, $sh_autopag_functions;
 
         $options     = $sh_page_links->get_options();
@@ -111,7 +111,7 @@ class SH_PagStyles_Functions
         }
         return $link;
     }
-    
+
     /**
      * Add pagination spacing.
      *
@@ -127,7 +127,7 @@ class SH_PagStyles_Functions
     </style>
     <?php
     }
-    
+
     /**
      * Add pagination by Ajax
      *
@@ -145,7 +145,7 @@ class SH_PagStyles_Functions
         $enabled = unserialize($options['single_view']['enabled_posts']);
         if (!in_array($post_type, $enabled))
             return $content;
-        
+
         if ($options['pagination_styles']['use_ajax']==1) {
 
             $id = $options['pagination_styles']['wrapper_id'];
@@ -174,7 +174,7 @@ class SH_PagStyles_Functions
                     //Load when the page is smaller than window
                     //Load when the scroll is at end of window
                     if ( ( current_h > content_end - 100) || ( page_h < total_h ) || (current_h+total_h >= page_h)) {
-                        
+
                         var next_page = $("#plp_ajax_current_page").val();
                         if (next_page != "hold") {
                             $("#plp_ajax_current_page").val("hold");
@@ -197,7 +197,7 @@ class SH_PagStyles_Functions
                                 });
                             });
                         }
-                    } 
+                    }
                 });
             });
             </script>
@@ -229,7 +229,7 @@ class SH_PagStyles_Functions
 
                         if ($(this).attr("data-ajax") == "0")
                             return;
-                        
+
                         e.preventDefault();
                         var pagination = $(this).attr("href");
 
@@ -300,7 +300,7 @@ class SH_PagStyles_Functions
 
         return $content;
     }
-    
+
     /**
      * Return next page for ajax
      *
@@ -337,9 +337,9 @@ class SH_PagStyles_Functions
         $content = apply_filters( 'the_content', $current_post->post_content );
 
         if ($sh_autopag_functions) {
-            
+
             global $post;
-            
+
             $post = $current_post;
             $sh_autopag_functions->remove_nextpage();
             setup_postdata( $post );
@@ -352,9 +352,9 @@ class SH_PagStyles_Functions
                     global $pages_count;
                     $page_style_args = $options['pagination_styles'];
                     echo $sh_scrolling_functions->generate_scrolling_pagination("", $current_page+1, $pages_count, $page_style_args, "plp_new_pagination");
-                }    
+                }
             }
-            
+
 
         } else {
             //No auto pagination. Just Single pagination.
@@ -367,6 +367,6 @@ class SH_PagStyles_Functions
         }
 
         die();
-        
+
     }
 }

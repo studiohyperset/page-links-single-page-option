@@ -32,19 +32,19 @@ define('SH_PAGE_LINKS_VER', '2.5.1');
  */
 global $sh_page_links, $sh_page_links_options;
  	// Add settings link on plugin page
-function single_page_styles($links) { 
-  $settings_link = '<a href="options-general.php?page=sh-page-links-options">'. __('Settings', SH_PAGE_LINKS_DOMAIN) .'</a>'; 
-  array_unshift($links, $settings_link); 
-  return $links; 
+function single_page_styles($links) {
+  $settings_link = '<a href="options-general.php?page=sh-page-links-options">'. __('Settings', SH_PAGE_LINKS_DOMAIN) .'</a>';
+  array_unshift($links, $settings_link);
+  return $links;
 }
-$plugin = plugin_basename(__FILE__); 
+$plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'single_page_styles' );
 
 
 function sh_wp_link_page($i, $class = '', $attr = '') {
 
     return str_replace('href=', $attr . ' class="'. $class .'" href=', _wp_link_page($i) );
-    
+
 }
 
 
@@ -80,7 +80,7 @@ class SH_PageLinks_Bootstrap {
     public static function init()
     {
         global $sh_page_links, $sh_singleview_options;
-        
+
         load_plugin_textdomain('page-links-single-page-option', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 
         self::set_options();
@@ -104,9 +104,9 @@ class SH_PageLinks_Bootstrap {
             SH_PAGE_LINKS_VER,
             'screen'
         );
-        
+
         wp_register_style( 'plp-global', SH_PAGE_LINKS_URL . '/css/global.css', null, SH_PAGE_LINKS_VER, 'screen' );
-		
+
 		add_filter('transient_update_plugins', array($this, 'checkForUpdate'));
 		add_filter('site_transient_update_plugins', array($this, 'checkForUpdate'));
         $sh_page_links_options = new SH_PageLinks_Options();
@@ -139,22 +139,22 @@ class SH_PageLinks_Bootstrap {
     {
         return self::$options;
     }
-	
+
 	/**
 	 * Check for Updates
 	 *
-	 */	
+	 */
 	public function checkForUpdate($option) {
-		
-		
+
+
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
         $gitUriValue = 'https://github.com/studiohyperset/page-links-single-page-option/';
-		
+
 		$url = 'https://api.github.com/repos/studiohyperset/page-links-single-page-option/tags';
-		
+
         $response = get_transient(md5($url)); // Note: WP transients fail if key is long than 45 characters
-        
+
 		if(empty($response)){
             $raw_response = wp_remote_get($url, array('sslverify' => false, 'timeout' => 10));
 			if ( is_wp_error( $raw_response ) ){
@@ -168,16 +168,16 @@ class SH_PageLinks_Bootstrap {
                 return $option;
             }
             $response = $response[0];
-			
+
 			//set cache
 			set_transient(md5($url), $response, 6000);
 		}
-		
+
         // check and generate download link
         $data = get_plugin_data( __FILE__ );
         $plugin = plugin_basename(__FILE__);
 		if(version_compare($data['Version'],  $response->name, '>=')){
-			// up-to-date!  
+			// up-to-date!
 			unset($option->response[$plugin]);
 		} else {
             $option->response[$plugin] = (object)array(

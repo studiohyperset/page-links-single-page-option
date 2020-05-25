@@ -15,13 +15,13 @@
 class SH_PagStyles_Options
 {
     public function __construct()
-    {	
+    {
         add_action("sh_page_links_options_option_fields", array($this, 'options_fields'), 11);
         add_action("sh_page_links_options_option_sections", array($this, 'options_sections'), 11);
-		
+
 		add_action('admin_menu', array($this, 'admin_menu'), 11);
     }
-	
+
 	public function admin_menu() {
 		// Add new menu option
 		add_submenu_page(
@@ -33,7 +33,7 @@ class SH_PagStyles_Options
 			array($this, 'show_menu_page')
 		);
 	}
-	
+
 	/**
      * Display options page
      * @return void
@@ -114,7 +114,7 @@ class SH_PagStyles_Options
                                         SH_PAGE_LINKS_DOMAIN),
                     'callback'    => array('SH_PageLinks_Options', 'settings_field_cb'),
                 ),
-				
+
 				'header' => array(
                     'id'      => 'header',
                     'title'   => '<p class="p-header-2"><strong>' . __('Styles', SH_PAGE_LINKS_DOMAIN) .'</strong></p>',
@@ -128,7 +128,7 @@ class SH_PagStyles_Options
                     'default' => '1',
                     'description' => __('Echo (1) or return (0) the page list. Defaults to "1" (echo).', SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
-                ),  
+                ),
 				'seperator' => array(
                     'id'      => 'seperator',
                     'title'   => __('Pagination Separator', SH_PAGE_LINKS_DOMAIN),
@@ -137,7 +137,7 @@ class SH_PagStyles_Options
                     'default' => '|',
                     'description' => __('Pagination separator. Defaults to " | ".', SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
-                ),                 
+                ),
 				'wrapper_tag' => array(
                     'id'      => 'wrapper-tag',
                     'title'   => __('Page Links Wrapper Element', SH_PAGE_LINKS_DOMAIN),
@@ -231,7 +231,7 @@ class SH_PagStyles_Options
      */
     public function options_sections($sections = array())
     {
-        
+
         $new_sections = array(
             'pagination_styles' => array(
                 'title' => __('Pagination Controls', SH_PAGE_LINKS_DOMAIN),

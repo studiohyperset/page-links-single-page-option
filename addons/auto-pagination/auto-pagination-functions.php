@@ -33,7 +33,7 @@ class SH_AutoPag_Functions {
     }
 
     public function get_default_args() {
-        
+
 		$args = array();
         $args['before'] = '<p>Pages:';
         $args['after'] = '</p>';
@@ -49,7 +49,7 @@ class SH_AutoPag_Functions {
         $args['link_wrapper_class'] = '';
         $args['link_wrapper_outter'] = '';
         $args['link_wrapper_outter_class'] = '';
-		
+
 		return $args;
     }
 
@@ -60,15 +60,15 @@ class SH_AutoPag_Functions {
 
     public function remove_nextpage() {
         global $post, $sh_page_links;
-        
+
         if (!$post->post_content || $post->post_content == '')
             return;
-            
+
         $options =  $sh_page_links->get_options();
-		
+
 		$option = get_post_meta($post->ID,"single_override_pagination",true);
         $ignore = false;
-        
+
 		if ($option == false || $option == "default" || $option == '') {
 			if (isset($options['auto_pagination']) && $options['auto_pagination'] == 1)
 				$ignore = true;
@@ -76,7 +76,7 @@ class SH_AutoPag_Functions {
 			if ($option == "ignore")
 				$ignore = true;
         }
-        
+
 		if ($ignore) {
             $post->post_content = str_replace("<!--nextpage-->", "", $post->post_content);
         } else {
@@ -121,12 +121,12 @@ class SH_AutoPag_Functions {
         <input type="checkbox" id="single_not_paginate" name="single_not_paginate" value="yes" <?php checked( 'yes', $value, true ); ?> /><label for="single_not_paginate"><?php _e("Don't paginate this", SH_PAGE_LINKS_DOMAIN); echo ' ' . strtolower($ptype); ?></label>
 		<?php
 	}
-	
+
     public function pagination_metabox_render_save($post_id) {
-		
+
 		if ( ! isset( $_POST['pagination_override'] ) || ! wp_verify_nonce( $_POST['pagination_override'], plugin_basename( __FILE__ ) ) )
 			return;
-		
+
 		update_post_meta($post_id, 'single_override_pagination', $_POST['single_override_pagination']);
 		update_post_meta($post_id, 'single_not_paginate', $_POST['single_not_paginate']);
 	}
@@ -156,7 +156,7 @@ class SH_AutoPag_Functions {
             $text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 
         }
-        
+
         return $text;
     }
 
@@ -177,26 +177,26 @@ class SH_AutoPag_Functions {
             return $content;
 
 		$options = $sh_page_links->get_options();
-		
+
         $content = str_replace("<!--nextpage-->", "", $content);
-		
+
         $post_type = get_post_type($post);
 		$enabled = unserialize($options['single_view']['enabled_posts']);
 		if (!in_array($post_type, $enabled))
 			return $content;
-		
+
         $auto_paged = 0;
-        
+
 		$elipsis = $options['scrolling_pagination']['elipsis'];
 		$firstpage = $options['scrolling_pagination']['firstpage'];
 		$lastpage = $options['scrolling_pagination']['lastpage'];
-		
+
         $auto_options = $options['auto_pagination'];
         $pages_array = $this->get_pages($content, $auto_options);
-		
+
         $pages = count($pages_array);
         $pages_count = $pages;
-		
+
         if ($pages > 1) {
             $auto_paged = 1;
             $page = (is_single() || is_page()) ? get_query_var('page') : 0;
@@ -206,9 +206,9 @@ class SH_AutoPag_Functions {
             $singlepage = !empty($_GET['singlepage']) ? 1 : 0;
             if (! ($singlepage==1 && $options['pagination_styles']['use_ajax']==0))
                 $output = $this->generate_pagination($page, $pages, $page_style_args, $elipsis);
-			
+
 			$wrapper_tag_output = "%s";
-			
+
 			/*
              * Add Single View
              */
@@ -219,11 +219,11 @@ class SH_AutoPag_Functions {
                 else
                     $wrapper_tag_output .= $sh_single_view->add_single_page('','','');
             }
-			
+
             if (! ($singlepage==1 && $options['pagination_styles']['use_ajax']==0)) {
 
                 if (!empty($page_style_args['wrapper_tag'])) {
-                        
+
                     $wrapper_tag = $page_style_args['wrapper_tag'];
                     $wrapper_id = empty($page_style_args['wrapper_id']) ? "" : " id=\"{$page_style_args['wrapper_id']}\"";
                     $wrapper_class = empty($page_style_args['wrapper_class']) ? " class=\"auto-paginate-links\"" : " class=\"auto-paginate-links {$page_style_args['wrapper_class']}\"";
@@ -234,7 +234,7 @@ class SH_AutoPag_Functions {
                             . "</". $wrapper_tag .">";
                 } else {
                     $after = isset($page_style_args['single']) ? $page_style_args['single'] : $page_style_args['after'];
-                    $wrapper_tag_output = 
+                    $wrapper_tag_output =
                             $page_style_args['before']
                             . $wrapper_tag_output
                             . $after;
@@ -243,19 +243,19 @@ class SH_AutoPag_Functions {
             } else {
 
                 if (!empty($page_style_args['wrapper_tag'])) {
-                        
+
                     $wrapper_tag = $page_style_args['wrapper_tag'];
                     $wrapper_id = empty($page_style_args['wrapper_id']) ? "" : " id=\"{$page_style_args['wrapper_id']}\"";
                     $wrapper_class = empty($page_style_args['wrapper_class']) ? " class=\"auto-paginate-links\"" : " class=\"auto-paginate-links {$page_style_args['wrapper_class']}\"";
                     $wrapper_tag_output = "<". $wrapper_tag ." ". $wrapper_id ." ". $wrapper_class .">"
                             . $wrapper_tag_output
                             . "</". $wrapper_tag .">";
-                }                
+                }
 
             }
 
 			$output = sprintf($wrapper_tag_output, $output);
-			
+
             global $current_page;
             $page_key = 0;
             if ($page > 0) {
@@ -273,7 +273,7 @@ class SH_AutoPag_Functions {
 
             if ($current_page === null)
                 $content = $content . $output;
-			
+
         }
         return $content;
     }
@@ -299,10 +299,10 @@ class SH_AutoPag_Functions {
 
         // check if page already has <!--nextpage-->
         if (substr_count($content, "<!--nextpage-->") !== 0) {
-			
+
 			$content_array = explode("<!--nextpage-->", $content);
-			
-            return $content_array; 
+
+            return $content_array;
         }
         $exploded_content = explode("\n", $content);
         $paragraph_count = 0;
@@ -316,11 +316,11 @@ class SH_AutoPag_Functions {
                 $paragraph_count++;
             }
         }
-		
+
         if ($options['break_type'] == 0) {
 
             //Break per paragraph
-            $modified_exploded_content = $content_pages;        
+            $modified_exploded_content = $content_pages;
             $options['total_paras']=count($modified_exploded_content);
             array_walk($modified_exploded_content, array($this, 'walker_insert_nextpage'), $options);
 
@@ -356,7 +356,7 @@ class SH_AutoPag_Functions {
             }
 
         } elseif ($options['break_type'] == 2) {
-            
+
             //Break per number of words
             $words_count = (int)$options['paragraph_count'];
             if ( (!$words_count) || ($words_count < 50) )
@@ -378,7 +378,7 @@ class SH_AutoPag_Functions {
         }
 
         $paged_content = implode("\n", $modified_exploded_content);
-        $page_content_array = explode("<!--sh_nextpage-->", $paged_content);    
+        $page_content_array = explode("<!--sh_nextpage-->", $paged_content);
         $page_content_array = array_filter($page_content_array,array($this, 'filter_trim'));
         return $page_content_array;
     }
@@ -395,15 +395,15 @@ class SH_AutoPag_Functions {
      */
      public function generate_pagination($page, $pages, $args, $elipsis) {
 		global $singlepage;
-		
+
 		if (!$args) {
 			$args = $this->get_default_arguments();
 		}
-		
+
         if ($page == 0)
             $page = 1;
         $output = "";
-        
+
         $singlepage = !empty($_GET['singlepage']) ? 1 : 0;
         if ($singlepage==1 && $options['pagination_styles']['use_ajax']==0) {
             return "";
@@ -421,7 +421,7 @@ class SH_AutoPag_Functions {
                 $link_html_close = '</a>';
             }
 
-			
+
             // Link Wrapper Inner
             $link_wrapper_open = "";
             $link_wrapper_close = "";
@@ -444,10 +444,10 @@ class SH_AutoPag_Functions {
                     $link_wrapper_outter_open = "<{$link_wrapper}{$link_class}>";
                     $link_wrapper_outter_close = "</{$link_wrapper}>";
                 }
-                
+
             }
 
-			
+
             $link_html_formatted = " "
                     . $link_wrapper_outter_open
 					. $link_html_open
@@ -457,17 +457,17 @@ class SH_AutoPag_Functions {
                     . $link_html_close
                     . $link_wrapper_outter_close
 					. " ";
-                  
+
 			if ($i != $pages)
 				$link_html_formatted .= $args['seperator'];
-			
+
 			if($i > 3)
 				$link_html_formatted .= $elipsis;
-				
-			
+
+
             $output .= $link_html_formatted;
         }
-		
+
         return apply_filters('generate_pagination', $output, $page, $pages, $args, $elipsis);
     }
 
@@ -494,7 +494,7 @@ class SH_AutoPag_Functions {
     }
 
 
-    
+
      /**
      * Filter method for trimming strings.
      *
@@ -533,7 +533,7 @@ class SH_AutoPag_Functions {
     /**
      * Retrieve default arguments from Pagination Styles
      *
-     * 
+     *
      * @return array
      */
     public function get_default_arguments() {
@@ -542,16 +542,16 @@ class SH_AutoPag_Functions {
 			global $sh_pagstyles_functions;
             $page_styles_args = apply_filters('wp_link_pages_args', $sh_pagstyles_functions->add_arg_values(array()));
 		} else {
-			
+
 			$page_styles_defaults = $this->get_default_args();
             $page_styles_args = apply_filters('wp_link_pages_args', $page_styles_defaults);
-            
+
         }
         return $page_styles_args;
     }
 
 
-    
+
     /**
      * Checks if Pagination Styles is active
      *
@@ -560,6 +560,6 @@ class SH_AutoPag_Functions {
     private function _has_pag_styles() {
         return class_exists('SH_PageLinks_PagStyles_Bootstrap');
     }
-	
-	
+
+
 }

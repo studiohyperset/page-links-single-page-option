@@ -46,7 +46,7 @@ class SH_PageLinks_Options
         add_action('admin_init', array($this, 'options_init'));
         add_action('admin_menu', array($this, 'admin_menu'));
     }
- 
+
     /**
      * admin_menu()
      * Hook function for admin_menu hook.
@@ -55,7 +55,7 @@ class SH_PageLinks_Options
      */
     public function admin_menu()
     {
-        
+
         global $menu_page;
         if (empty($menu_page)){
             $menu_page = add_menu_page(
@@ -78,7 +78,7 @@ class SH_PageLinks_Options
         }
         add_action( 'admin_enqueue_scripts', array($this, 'admin_styles') );
     }
- 
+
     /**
      * admin_styles()
      * Enqueue special style for admin
@@ -87,7 +87,7 @@ class SH_PageLinks_Options
      */
     public function admin_styles()
     {
-        
+
         return wp_enqueue_style( 'plp-global' );
     }
 
@@ -102,8 +102,8 @@ class SH_PageLinks_Options
     {
         wp_enqueue_script('jquery-ui', null, array('jquery'));
         wp_enqueue_script('jquery-ui-tabs', null, array('jquery'));
-		
-		wp_register_script('admin-menu-current', plugins_url('js/admin-menu-current.min.js', __FILE__),array('jquery'),SH_PAGE_LINKS_VER);	
+
+		wp_register_script('admin-menu-current', plugins_url('js/admin-menu-current.min.js', __FILE__),array('jquery'),SH_PAGE_LINKS_VER);
         wp_register_script('pagination_option_validation', plugins_url('js/pagination_option_validation.min.js', __FILE__),array('jquery'), SH_PAGE_LINKS_VER);
 
         wp_enqueue_script('admin-menu-current');
@@ -296,9 +296,9 @@ class SH_PageLinks_Options
 
             if ($option['type'] == 'multicheckcp') {
                 $cps =  get_post_types(array('public' => true), 'objects');
-                
+
                 try {
-                    @$value = unserialize($option_values[$option['section']][$option['name']]);  
+                    @$value = unserialize($option_values[$option['section']][$option['name']]);
                 } catch (Exception $e) {
                     $value = array('A');
                 }
@@ -312,7 +312,7 @@ class SH_PageLinks_Options
 
                     $i++;
                     $option_str_holder = "";
-                    
+
                     $checked = " ";
                     if (is_array($value))
                         if (in_array($cp->name, $value)) $checked = "CHECKED ";
@@ -342,9 +342,9 @@ class SH_PageLinks_Options
                         . "[{$option['name']}][]\" "
                         . "id=\"{$option['id']}_$i\" "
                         . "value=\"_empty_\" ";
-                            
+
             }
-            
+
             if ($option['type'] == 'text') {
                 $description = !empty($option['description'])
                             ? "<span class=\"description\">{$option['description']}</span>" : '';
@@ -362,7 +362,7 @@ class SH_PageLinks_Options
             }
 
             if ($option['type'] == 'phpstatus') {
-                
+
                 $option_str = '<div class="phpstatus">';
 
                 if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
@@ -397,13 +397,13 @@ class SH_PageLinks_Options
                 }
 
                 $updates = get_site_transient('update_plugins');
-                
+
                 if (isset($updates->response['page-links-single-page-option/page-links.php'])) {
                     $option_str .= '<li class="false">' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong> <em>'. __("New version available", SH_PAGE_LINKS_DOMAIN) . " : " . $updates->response['page-links-single-page-option/page-links.php']->new_version . '<a href="update-core.php">' . __("Update it!", SH_PAGE_LINKS_DOMAIN) .'</a></em></li>';
                 } else {
                     $option_str .= '<li>' . __("Page Links Version", SH_PAGE_LINKS_DOMAIN) . ': <strong>' . SH_PAGE_LINKS_VER . '</strong></li>';
                 }
-                
+
 
                 if (class_exists('SH_PageLinks_PagStyles_Bootstrap')) {
                     if (!isset($updates->response['pagination-styles/pagination-styles.php'])) {
@@ -431,12 +431,12 @@ class SH_PageLinks_Options
 
             }
         }
-        
+
         echo $option_str;
     }
 
 
-    
+
 	/**
 	 * Sanitizes option fields
 	 *
@@ -458,7 +458,7 @@ class SH_PageLinks_Options
             esc_attr($current_tab),
             'updated'
         );
-		
+
 		if ($options) {
 			foreach ($options as $option_section => $option) {
 				foreach ($option as $option_name => $option_value) {
@@ -476,16 +476,16 @@ class SH_PageLinks_Options
 									$value = ($newval < $minval) ? $minval : $newval;
 								}
 							break;
-							
+
 							case 'array':
-								
+
 								$data = @unserialize($option_value);
 								if ($data !== false) {
 									$value = $option_value;
 								} else {
 									$value = serialize($option_value);
 								}
-								
+
 							break;
 							default:
 								if ($field_data['valid'] == 'html'){
@@ -508,8 +508,8 @@ class SH_PageLinks_Options
         return $new_options;
 	}
 	public function reset_button() {
-	
+
 		$val =1;
 	 	return $val;
-	 } 
+	 }
 }

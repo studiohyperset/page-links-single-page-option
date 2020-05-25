@@ -26,10 +26,10 @@ class SH_AutoPag_Options
     {
         add_action("sh_page_links_options_option_fields", array($this, 'options_fields'), 12);
         add_action("sh_page_links_options_option_sections", array($this, 'options_sections'), 12);
-		
+
 		add_action('admin_menu', array($this, 'admin_menu'), 12);
     }
-	
+
 
 
 	public function admin_menu() {
@@ -43,7 +43,7 @@ class SH_AutoPag_Options
 			array($this, 'show_menu_page')
 		);
 	}
-	
+
 
 
 	/**
@@ -104,7 +104,7 @@ class SH_AutoPag_Options
         return array_merge((array)$options, $new_options);
     }
 
-    
+
     /**
      * Defines Options page sections
      *

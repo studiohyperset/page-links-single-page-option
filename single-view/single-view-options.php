@@ -54,7 +54,7 @@ class SH_PageLinks_SingleView_Options
                     'default' => 1,
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-                
+
                 'text_single_link' => array(
                     'id'      => 'text-single-link',
                     'title'   => __('\'Single Page\' Link Text', SH_PAGE_LINKS_DOMAIN),
@@ -64,7 +64,7 @@ class SH_PageLinks_SingleView_Options
                     'default' => 'Single Page',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-				
+
                 'text_multiple_link' => array(
                     'id'      => 'text-multiple-link',
                     'title'   => __('\'Multi-Page\' Link Text', SH_PAGE_LINKS_DOMAIN),
@@ -74,13 +74,13 @@ class SH_PageLinks_SingleView_Options
                     'default' => 'Multi-Page',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-				
+
 				'header' => array(
                     'id'      => 'header',
                     'title'   => '<div style="position:absolute; font-style:italic; font-weight: normal;">' . __('After enabling, users can also activate the single-page view by appending "?singlepage=1" to the end of any page or post (e.g., http://sampleurl.com/page-title?singlepage=1).', SH_PAGE_LINKS_DOMAIN) . '</div><div style="height:20px"></div>',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
                 ),
-                
+
                 'enabled_posts' => array(
                     'id'      => 'enabled-posts',
                     'title'   => $enable_title,
@@ -90,7 +90,7 @@ class SH_PageLinks_SingleView_Options
                     'default' => array('post', 'page'),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-				
+
                 'phpstatus' => array(
                     'id'      => 'php-status',
                     'title'   => __('System Status:', SH_PAGE_LINKS_DOMAIN),
@@ -100,10 +100,10 @@ class SH_PageLinks_SingleView_Options
                     'default' => '',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
-				
+
             ),
         );
-		
+
         return array_merge($new_options, (array)$options);
     }
 
@@ -115,7 +115,7 @@ class SH_PageLinks_SingleView_Options
      */
     public function options_sections($sections = array())
     {
-        
+
         $new_sections = array(
             'single_view' => array(
                 'title' => __('Single Page', SH_PAGE_LINKS_DOMAIN),

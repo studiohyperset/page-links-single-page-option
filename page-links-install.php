@@ -71,9 +71,9 @@ class SH_PageLinks_Install
      * @return void
      */
     public static function do_deactivate()
-    {	 
+    {
         flush_rewrite_rules();
-		
+
 		// Action to deactivate optional modules
 		add_action('update_option_active_plugins', array('SH_PageLinks_Install','deactivate_dependents'));
    }
@@ -91,7 +91,7 @@ class SH_PageLinks_Install
 		);
 		deactivate_plugins($dependent);
 	}
-    
+
 
     /**
      * Returns default options

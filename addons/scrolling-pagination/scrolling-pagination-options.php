@@ -21,10 +21,10 @@ class SH_ScrollingPagination_Options
     {
         add_action("sh_page_links_options_option_fields", array($this, 'options_fields'), 13);
         add_action("sh_page_links_options_option_sections", array($this, 'options_sections'), 13);
-		
+
 		add_action('admin_menu', array($this, 'admin_menu'), 13);
     }
-	
+
 	public function admin_menu() {
 		// Add new menu option
 		add_submenu_page(
@@ -36,7 +36,7 @@ class SH_ScrollingPagination_Options
 			array($this, 'show_menu_page')
 		);
 	}
-	
+
 	/**
      * Display options page
      * @return void
@@ -142,7 +142,7 @@ class SH_ScrollingPagination_Options
                         <div style="height:420px"></div>',
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb'),
                 ),
-				
+
             ),
         );
         return array_merge((array)$options, $new_options);

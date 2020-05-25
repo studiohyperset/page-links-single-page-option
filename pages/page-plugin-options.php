@@ -18,7 +18,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
     if (!empty($messages[0]['message'])) {
         $current_tab = $messages[0]['message'];
 	}
-	
+
 ?>
 <style type="text/css">
     #icon-sh-page-links-options {
@@ -26,7 +26,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
     }
 </style>
 <script type="text/javascript">
-	 
+
     jQuery(function($){
 
     	$('#toplevel_page_sh-page-links-options ul li.wp-first-item a').attr('href', $('#toplevel_page_sh-page-links-options ul li.wp-first-item a').attr('href')+'#single_view');
@@ -40,7 +40,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
                 $input.val(currentPanel);
             }
         });
-		
+
 		$(window).bind('hashchange', function () { //detect hash change
 			var hash = window.location.hash.slice(1); //hash to string (= "myanchor")
 			$('.nav-tab-wrapper li[aria-controls="'+hash+'"] a').click();
@@ -151,7 +151,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		var firstpage = jQuery("#firstpage").val();
 		var lastpage = jQuery("#lastpage").val();
 		var sepval = jQuery("#seperator").val();
-		
+
 		//jQuery("#before-content-1").html(before);
 		jQuery("#wrapper-tag-1").html(wraptag);
 		jQuery("#wrapper-tag-2").html(wraptag);
@@ -199,7 +199,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 		jQuery("#sepval-6").html(sepval);
 		jQuery("#sepval-7").html(sepval);
 		jQuery("#sepval-8").html(sepval);
-		
+
 	});
 	jQuery(function (){
 		jQuery('#link-wrapper').change(function (){
@@ -218,63 +218,63 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 			jQuery("#link-wrapper-12").html(linkwrap);
 			jQuery("#link-wrapper-13").html(linkwrap);
 			jQuery("#link-wrapper-14").html(linkwrap);
-		 });       
+		 });
 	});
 	jQuery(function (){
 		jQuery('#wrapper-tag').change(function (){
 			var wraptag = jQuery("#wrapper-tag").val();
 			jQuery("#wrapper-tag-1").html(wraptag);
 			jQuery("#wrapper-tag-2").html(wraptag);
-		 });       
+		 });
 	});
 	jQuery(function (){
 		jQuery('#wrapper-id').change(function (){
 			var wrapid = jQuery("#wrapper-id").val();
 			//var wrapid = wrapid.replace(",", " ");
 			jQuery("#wrapper-id-1").html(wrapid);
-		});       
+		});
 	})
 	jQuery(function (){
 		jQuery('#wrapper-class').change(function (){
 			var wrapclass = jQuery("#wrapper-class").val();
 			var wrapclass = wrapclass.replace(",", " ");
 			jQuery("#wrapper-class-1").html(wrapclass);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#nextpagelink').change(function (){
 			var nxtpaglink = jQuery("#nextpagelink").val();
 			jQuery("#nextpagelink-1").html(nxtpaglink);
 			jQuery("#nextpagelink-2").html(nxtpaglink);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#previouspagelink').change(function (){
 			var prevpagelink = jQuery("#previouspagelink").val();
 			jQuery("#previouspagelink-1").html(prevpagelink);
 			jQuery("#previouspagelink-2").html(prevpagelink);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#firstpage').change(function (){
 			var firstpage = jQuery("#firstpage").val();
 			jQuery("#firstpage-1").html(firstpage);
 			jQuery("#firstpage-2").html(firstpage);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#lastpage').change(function (){
 			var lastpage = jQuery("#lastpage").val();
 			jQuery("#lastpage-1").html(lastpage);
 			jQuery("#lastpage-2").html(lastpage);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#elipsis').change(function (){
 			var elipsis = jQuery("#elipsis").val();
 			jQuery("#elipsis-1").html(elipsis);
 			jQuery("#elipsis-2").html(elipsis);
-		});       
+		});
 	});
 	jQuery(function (){
 		jQuery('#link-wrapper-class').change(function (){
@@ -286,12 +286,12 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 			jQuery("#link-wrapper-class-5").html(linkwrapclass);
 			jQuery("#link-wrapper-class-6").html(linkwrapclass);
 			jQuery("#link-wrapper-class-7").html(linkwrapclass);
-		});       
+		});
 	});
-	
+
 </script>
 <div class="wrap">
-	
+
     <h2>Page-Links Plus</h2>
 	<div class="border"></div>
 	<div id="logo-content">
@@ -304,29 +304,29 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
 	    </div>
 
 	    <div id="logo-right">
-	    
+
 		    <p><a href="http://studiohyperset.com" target="_blank">Studio Hyperset</a> <?php _e("built Page-Links Plus for one reason: to provide the WordPress community with an integrated, comprehensive pagination solution.", SH_PAGE_LINKS_DOMAIN); ?></p>
 		    <p><?php _e("Whether you're a WordPress developer, site manager, or lay user, Page-Links Plus can help you set up, customize, and manage your site's pagination quickly and easily.", SH_PAGE_LINKS_DOMAIN); ?></p>
-            
+
 
 
  <?php if (!is_plugin_active('pagination-styles/pagination-styles.php') || !is_plugin_active('auto-pagination/auto-pagination.php') || !is_plugin_active('scrolling-pagination/scrolling-pagination.php')) { echo '<div id="plp-in-two" class="rwd-media"><h3>PLP in :02</h3>
-<iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } else { } ?>		    
+<iframe src="//player.vimeo.com/video/109187562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; } else { } ?>
 
-		    
-	    
+
+
 	    </div>
 	</div>
 
 	<div class="breaker-bottom"></div>
-   
+
     <?php if (isset($_GET['settings-updated'])) : ?>
         <div id="setting-error-settings_updated" class="updated settings-error"><p><strong><?php _e("Settings saved.", SH_PAGE_LINKS_DOMAIN); ?></strong></p></div>
     <?php endif; ?>
     <form action="options.php" method="post" id="sh_pagelinks_options_form">
 
         <?php settings_fields('sh_page_links_options'); ?>
-        
+
         <div class="tabs">
 
             <div class="nav-tab-wrapper">
@@ -340,7 +340,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
             </div>
 
             <?php foreach ($sections as $section_name): ?>
-				
+
 				 <div class="tab" id="<?php echo esc_attr($section_name); ?>">
 				 	<?php do_settings_sections("sh_page_links_options-{$section_name}"); ?>
                 </div>
@@ -350,6 +350,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF']))
         </div>
 
 		<input name="sh_page_links_option-submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Settings', SH_PAGE_LINKS_DOMAIN); ?>" />
-		<input type="button" class="button-primary" id="restorevalue" name="sh_page_links_option-reset" value="<?php esc_attr_e('Restore default', SH_PAGE_LINKS_DOMAIN); ?>"/> 
+		<input type="button" class="button-primary" id="restorevalue" name="sh_page_links_option-reset" value="<?php esc_attr_e('Restore default', SH_PAGE_LINKS_DOMAIN); ?>"/>
     </form>
 </div>

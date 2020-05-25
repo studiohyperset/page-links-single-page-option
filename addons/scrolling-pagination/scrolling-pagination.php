@@ -62,14 +62,14 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
     public static function init()
     {
         global $sh_scrolling_options, $sh_scrolling_functions, $auto_pag_active, $main_active;
-		
+
         $sh_scrolling_options   = new SH_ScrollingPagination_Options();
 		$sh_scrolling_functions = new SH_ScrollingPagination_Functions();
-		
-    }
-	
 
-    
+    }
+
+
+
     /**
      * Set plugin options. This method should run every time
      * plugin options are updated.
@@ -112,5 +112,5 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
     {
         return array_merge((array)$new_options, self::$default_options);
     }
-	
+
 }

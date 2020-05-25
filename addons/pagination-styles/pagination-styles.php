@@ -50,7 +50,7 @@ class SH_PageLinks_PagStyles_Bootstrap
      *
      * @var array
      */
-	
+
     protected static $default_options = array(
         'before'             => '<p>Pages:',
         'after'              => '</p>',
@@ -65,7 +65,7 @@ class SH_PageLinks_PagStyles_Bootstrap
         'link_wrapper_class' => '',
         'pagelink'           => '%',
         'archive_pages'      => 0,
-		
+
     );
 
     /**
@@ -81,7 +81,7 @@ class SH_PageLinks_PagStyles_Bootstrap
 		$sh_pagstyles_functions = new SH_PagStyles_Functions();
 
     }
-    
+
 
     /**
      * Set plugin options. This method should run every time

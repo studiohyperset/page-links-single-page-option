@@ -20,7 +20,7 @@ class SH_ScrollingPagination_Functions {
     public function __construct() {
         add_filter('generate_pagination', array($this, 'generate_scrolling_pagination'), 10, 4);
     }
-    
+
     /**
      * Generates the scrolling pagination list.
      *
@@ -31,10 +31,10 @@ class SH_ScrollingPagination_Functions {
      *
      * @return string
      */
-	 
+
     public function generate_scrolling_pagination($content, $page, $pages, $args, $spanid = "plp_inital_pagination") {
         global $sh_page_links, $auto_paged, $singlepage, $sh_autopag_functions, $scrolling_paged;
-		
+
         $scrolling_paged = 0;
         if (!$auto_paged || ($pages < 1))
             return $content;
@@ -48,7 +48,7 @@ class SH_ScrollingPagination_Functions {
         if ($scrolls < 1)
             return $content;
         $content = "";
-	
+
         //
         // generate our scrolling navigation...
         // Start with prev/next links
@@ -56,7 +56,7 @@ class SH_ScrollingPagination_Functions {
         $prev_link = "";
         $next_link = "";
         if (!$singlepage) {
-			
+
 			$first_num = 1;
 			$first_num = ' '
 						. $r['link_before_outter']
@@ -68,7 +68,7 @@ class SH_ScrollingPagination_Functions {
 						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
-			
+
 			$prev_link = "";
             if ($page > 1) {
                 $prev_num = $page - 1;
@@ -77,13 +77,13 @@ class SH_ScrollingPagination_Functions {
 						. sh_wp_link_page($prev_num, $r['previouspageclass'])
 						. $r['link_before']
                         . $r['previouspagelink']
-                        . $r['link_after'] 
+                        . $r['link_after']
 						. '</a>'
 						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
             }
-			
+
 			$next_link = "";
             if ($page < $pages) {
                 $next_num = $page + 1;
@@ -92,13 +92,13 @@ class SH_ScrollingPagination_Functions {
 						. sh_wp_link_page($next_num, $r['nextpageclass'])
 						. $r['link_before']
                         . $r['nextpagelink']
-                        . $r['link_after'] 
+                        . $r['link_after']
 						. '</a>'
 						. $r['link_after_outter']
 						. ' '
 						. $args['seperator'];
             }
-			
+
 			$last_num = $pages;
             $last_num = ' '
 						. $r['link_before_outter']
@@ -108,10 +108,10 @@ class SH_ScrollingPagination_Functions {
 						. $r['link_after']
                         . '</a>'
 						. $r['link_after_outter'];
-						
+
         }
         $output = "";
-		
+
 		// Set defaults...
 		$link_wrapper_open = "";
 		$link_wrapper_close = "";
@@ -126,7 +126,7 @@ class SH_ScrollingPagination_Functions {
 				$link_wrapper_close = "</{$link_wrapper}>";
 			}
 		}
-		
+
 		//Calculating start depending of limit
 		if ($pages_per_scroll == 1) {
 			$start = $page;
@@ -157,23 +157,23 @@ class SH_ScrollingPagination_Functions {
 			}
 			$end--;
 		}
-		
+
 		//Adding ellipsis to start
 		if ($start > 1)
 			$output .= 	" "
 						. $r['elipsis']
 						. " "
 						. $args['seperator'];
-		
-		
+
+
 		$title = get_the_title();
 		for ($i = $start; $i <= ($end); $i++) {
-			
+
             $link_html = _wp_link_page($i);
-			
+
             $current_class = ($i == $page) ? 'current' : '';
             if ( ($options['pagination_styles']['use_ajax']!=0) || ( $i != $page || $singlepage ) ) {
-			
+
 			 	$link_html_formatted = " "
 				 		. $r['link_before_outter']
 						. $link_html
@@ -184,7 +184,7 @@ class SH_ScrollingPagination_Functions {
 						. $r['link_after_outter']
 						. " "
 						. $args['seperator'];
-					
+
 			} else {
 				$link_html_formatted = 	$r['link_before_outter']
 										. '<span class="plp-active-page">'
@@ -192,11 +192,11 @@ class SH_ScrollingPagination_Functions {
 										. "</span> "
 										. $r['link_after_outter']
 										. $args['seperator'];
-				
+
 			}
             $output .= $link_html_formatted;
         }
-		
+
 		//Adding ellipsis to end
 		if ($end < $pages)
 			$output .= 	" "
