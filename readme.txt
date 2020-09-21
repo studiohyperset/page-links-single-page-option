@@ -4,7 +4,7 @@ Donate link: https://studiohyperset.com/
 Tags: pages, single page, navigation, pagination, paginate
 Requires at least: 3.0
 Tested up to: 5.4
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,10 @@ Try a fully-functioning demo here: [http://demo.pagelinksplus.com/wp-login.php](
 See the [GitHub project wiki](https://github.com/studiohyperset/wordpress-pagination-plugin/wiki).
 
 == Changelog ==
+
+= 2.5.4 (9/21/20)
+
+Bug fixes.
 
 = 2.5 (5/13/19)
 

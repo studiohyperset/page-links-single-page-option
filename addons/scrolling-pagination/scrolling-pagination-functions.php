@@ -41,7 +41,10 @@ class SH_ScrollingPagination_Functions {
         $scrolling_paged = 1;
         $options = $sh_page_links->get_options();
         $scrolling_options = $options['scrolling_pagination'];
-		$pages_per_scroll = (int) $scrolling_options['pages_to_scroll'];
+        
+        if (empty($scrolling_options['pages_to_scroll'])) $scrolling_options['pages_to_scroll'] = 1;
+        $pages_per_scroll = (int) $scrolling_options['pages_to_scroll'];
+        
         $r = $this->get_wp_link_pages_defaults();
         $r = wp_parse_args($scrolling_options, $r);
 		$scrolls = $pages / $pages_per_scroll;
