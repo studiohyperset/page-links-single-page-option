@@ -94,7 +94,7 @@ class SH_AutoPag_Functions {
     public function pagination_metabox() {
 		global $sh_page_links;
 		$options = $sh_page_links->get_options();
-		$cps = unserialize($options['single_view']['enabled_posts']);
+        $cps = (is_array($options['single_view']['enabled_posts'])) ? $options['single_view']['enabled_posts'] : unserialize($options['single_view']['enabled_posts']);
         foreach ($cps as $cp) {
 			add_meta_box( 'pagination_metabox_single', '<span class="plp_logo"></span>' . __( 'Override Pagination Settings?', SH_PAGE_LINKS_DOMAIN ), array( $this, 'pagination_metabox_render' ), $cp, 'side');
 		}
