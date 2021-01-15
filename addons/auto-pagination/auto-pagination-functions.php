@@ -26,9 +26,6 @@ class SH_AutoPag_Functions {
         add_action('wp_head', array($this, 'remove_nextpage'));
         add_filter('get_the_excerpt', array($this, 'generate_excerpt'), 1);
         add_filter('the_content', array($this, 'add_pagination'), 51);
-        add_filter('generate_pagination', function($output,$page,$pages,$args){
-            return $output;
-        }, 10, 4);
         add_action('wp_enqueue_scripts', array($this, 'add_pagination_style'));
 		add_action( 'add_meta_boxes', array( $this, 'pagination_metabox' ) );
 		add_action( 'save_post', array($this,'pagination_metabox_render_save') );
