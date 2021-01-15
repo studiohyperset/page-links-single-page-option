@@ -297,10 +297,10 @@ class SH_PageLinks_Options
             if ($option['type'] == 'multicheckcp') {
                 $cps =  get_post_types(array('public' => true), 'objects');
                 
-                try {
-                    @$value = unserialize($option_values[$option['section']][$option['name']]);  
-                } catch (Exception $e) {
-                    $value = array('A');
+                if (is_array($option_values[$option['section']][$option['name']])) {
+                    $value = $option_values[$option['section']][$option['name']];
+                } else {
+                    $value = unserialize($option_values[$option['section']][$option['name']]);
                 }
 
                 $i = 0;
@@ -478,8 +478,12 @@ class SH_PageLinks_Options
 							break;
 							
 							case 'array':
-								
-								$data = @unserialize($option_value);
+                                
+                                if (!is_array($option_value))
+                                    $data = @unserialize($option_value);
+                                else
+                                    $data = $option_value;
+
 								if ($data !== false) {
 									$value = $option_value;
 								} else {

@@ -100,7 +100,7 @@ class SH_ScrollingPagination_Options
                     'title'   => __('First Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
-                    'default' => __('First'),
+                    'default' => __('First', SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
 				'firstpageclass' => array(
@@ -116,7 +116,7 @@ class SH_ScrollingPagination_Options
                     'title'   => __('Last Page Text', SH_PAGE_LINKS_DOMAIN),
                     'type'    => 'text',
                     'valid'   => 'formatted',
-                    'default' => __('Last'),
+                    'default' => __('Last', SH_PAGE_LINKS_DOMAIN),
                     'callback' => array('SH_PageLinks_Options', 'settings_field_cb')
                 ),
 				'lastpageclass' => array(

@@ -65,7 +65,7 @@ class SH_PageLinks_PagStyles_Bootstrap
         'link_wrapper_class' => '',
         'pagelink'           => '%',
         'archive_pages'      => 0,
-		
+		'use_ajax'              => 0,
     );
 
     /**
@@ -80,6 +80,7 @@ class SH_PageLinks_PagStyles_Bootstrap
 		$sh_pagstyles_options   = new SH_PagStyles_Options();
 		$sh_pagstyles_functions = new SH_PagStyles_Functions();
 
+        self::set_options();
     }
     
 
@@ -89,16 +90,14 @@ class SH_PageLinks_PagStyles_Bootstrap
      *
      * @return void
      */
-    public static function set_options()
-    {
-        $options = maybe_unserialize(get_option('sh_page_links_options'));
-
-        if (empty($options['pagination_styles'])) {
-            $options['pagination_styles'] = self::get_default_options();
+    public static function set_options() {
+        $options = maybe_unserialize(get_option('sh_page_links_options', array()));
+        if (empty($options['pagination_styles'])){
+            $options['pagination_styles'] = self::$default_options;
+        } else {
+            $options['pagination_styles'] = array_merge(self::$default_options, $options['pagination_styles']);    
         }
-
-        self::$options = $options;
-
+        self::$options = $options['pagination_styles'];
     }
 
     /**
@@ -106,7 +105,7 @@ class SH_PageLinks_PagStyles_Bootstrap
      *
      * @return array
      */
-    public function get_options()
+    public static function get_options()
     {
         return self::$options;
     }

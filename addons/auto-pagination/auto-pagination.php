@@ -57,6 +57,7 @@ class SH_PageLinks_AutoPag_Bootstrap {
      * @var array
     */
     protected static $default_options = array(
+        'break_type' => 0,
         'paragraph_count' => '5',
         'inline_nextpage' => '0',
     );
@@ -75,6 +76,8 @@ class SH_PageLinks_AutoPag_Bootstrap {
         $sh_autopag_options = new SH_AutoPag_Options();
         $sh_autopag_functions = new SH_AutoPag_Functions();
 
+        self::set_options();
+
     }
 
 
@@ -86,13 +89,13 @@ class SH_PageLinks_AutoPag_Bootstrap {
      * @return void
      */
     public static function set_options() {
-        $options = get_option('sh_page_links_options');
-		
-        if (empty($options['auto_pagination'])) {
-            $options['auto_pagination'] = self::get_default_options();
-        }		
-		
-        self::$options = $options;
+        $options = maybe_unserialize(get_option('sh_page_links_options', array()));
+        if (empty($options['auto_pagination'])){
+            $options['auto_pagination'] = self::$default_options;
+        } else {
+            $options['auto_pagination'] = array_merge(self::$default_options, $options['auto_pagination']);    
+        }
+        self::$options = $options['auto_pagination'];
     }
 
 
@@ -102,7 +105,7 @@ class SH_PageLinks_AutoPag_Bootstrap {
      *
      * @return array
     */
-    public function get_options() {
+    public static function get_options() {
 	
         return self::$options;
     }

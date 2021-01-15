@@ -59,6 +59,9 @@ class SH_PageLinks_SingleView {
             if ($link_wrapper) {
                 $link_wrapper_open = "<{$link_wrapper}{$link_class}>";
                 $link_wrapper_close = "</{$link_wrapper}>";
+            } else {
+                $link_wrapper_open = '';
+                $link_wrapper_close = '';
             }
 
             $newval["after"] = $this->add_single_page($options['pagination_styles']['seperator'],$link_wrapper_open,$link_wrapper_close) . $newval["after"];

@@ -53,7 +53,7 @@ class SH_PagStyles_Functions
         extract($page_styles_args, EXTR_SKIP);
 
         $new_args = empty($link_pages_args) ? $page_styles_args : $link_pages_args;
-        if ($wrapper_tag) {
+        if (!empty($wrapper_tag)) {
             $wrapper_class = str_replace(',',' ',$wrapper_class);
             //$wrapper_id = str_replace(',',' ',$wrapper_id);
             $wrapper_tag_id     = empty($wrapper_id)
@@ -63,10 +63,13 @@ class SH_PagStyles_Functions
             $new_args['before'] = "<{$wrapper_tag}{$wrapper_tag_id}{$wrapper_tag_class}>"
                                     . $page_styles_args['before'];
             $new_args['after']  = $page_styles_args['after'] . "</{$wrapper_tag}>";
+        } else {
+            $new_args['before'] = '';
+            $new_args['after']  = '';
         }
 
         $new_args['link_before'] = $page_styles_args['link_before'];
-        if ($link_wrapper) {
+        if (!empty($link_wrapper)) {
             $wrapper_class = str_replace(',',' ',$wrapper_class);
             //$wrapper_id = str_replace(',',' ',$wrapper_id);
             $link_wrapper_class  = empty($link_wrapper_class)
@@ -75,15 +78,21 @@ class SH_PagStyles_Functions
                                 ? "" : " id=\"{$link_wrapper_id}\"";
             $new_args['link_before'] .= "<{$link_wrapper}{$link_wrapper_class}{$link_wrapper_id}>";
             $new_args['link_after']  = "</{$link_wrapper}>";
+        } else {
+            $new_args['link_before'] .= "";
+            $new_args['link_after']  = "";
         }
         $new_args['link_after']  .= $page_styles_args['link_after'];
 
-        if ($link_wrapper_outter) {
+        if (isset($link_wrapper_outter) && !empty($link_wrapper_outter)) {
             $wrapper_class = str_replace(',',' ',$wrapper_class);
             $link_wrapper_class  = empty($link_wrapper_outter_class)
                                     ? "" : " class=\"{$link_wrapper_outter_class}\"";
             $new_args['link_before_outter'] = "<{$link_wrapper_outter}{$link_wrapper_class}>";
             $new_args['link_after_outter']  = "</{$link_wrapper_outter}>";
+        } else {
+            $new_args['link_before_outter'] = "";
+            $new_args['link_after_outter']  = "";
         }
 
         if ($sh_autopag_functions)
@@ -142,7 +151,13 @@ class SH_PagStyles_Functions
         $options = $sh_page_links->get_options();
 
         $post_type = get_post_type($post);
-        $enabled = unserialize($options['single_view']['enabled_posts']);
+        
+        if (is_array($options['single_view']['enabled_posts']))
+            $enabled = $options['single_view']['enabled_posts'];
+        else
+            $enabled = unserialize($options['single_view']['enabled_posts']);
+
+        
         if (!in_array($post_type, $enabled))
             return $content;
         

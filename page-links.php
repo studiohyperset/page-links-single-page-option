@@ -11,7 +11,7 @@
 Plugin Name: Page-Links Plus
 Plugin URI: http://pagelinksplus.com
 Description: WordPress pagination plugin. Paginate content easily & efficiently.
-Version: 2.5.4
+Version: 2.5.5
 Author: Studio Hyperset, Inc.
 Author URI: http://studiohyperset.com
 License: GPL3
@@ -23,7 +23,7 @@ define('SH_PAGE_LINKS_PATH', plugin_dir_path(__FILE__));
 if (!defined('SH_PAGE_LINKS_DOMAIN')){
     define('SH_PAGE_LINKS_DOMAIN', basename(dirname(__FILE__)));
 }
-define('SH_PAGE_LINKS_VER', '2.5.4');
+define('SH_PAGE_LINKS_VER', '2.5.5');
 
 
 /**
@@ -137,6 +137,9 @@ class SH_PageLinks_Bootstrap {
      */
     public function get_options()
     {
+        self::$options['scrolling_pagination'] = SH_PageLinks_ScrollingPagination_Bootstrap::get_options();
+        self::$options['pagination_styles'] = SH_PageLinks_PagStyles_Bootstrap::get_options();
+        self::$options['auto_pagination'] = SH_PageLinks_AutoPag_Bootstrap::get_options();
         return self::$options;
     }
 	

@@ -52,7 +52,7 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
 		'firstpageclass'        => '',
 		'lastpage'         => '',
 		'lastpageclass'         => '',
-		'elipsis'          => '',
+		'elipsis'          => '...',
 	);
     /**
      * Initialization function
@@ -65,7 +65,8 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
 		
         $sh_scrolling_options   = new SH_ScrollingPagination_Options();
 		$sh_scrolling_functions = new SH_ScrollingPagination_Functions();
-		
+        
+        self::set_options();
     }
 	
 
@@ -76,20 +77,23 @@ class SH_PageLinks_ScrollingPagination_Bootstrap
      *
      * @return void
      */
-    public static function set_options()
-    {
-        $options = maybe_unserialize(get_option('sh_page_links_options'));
-        if (empty($options['scrolling_pagination'])) {
-            $options['scrolling_pagination'] = self::get_default_options();
+    public static function set_options() {
+        $options = maybe_unserialize(get_option('sh_page_links_options', array()));
+        if (empty($options['scrolling_pagination'])){
+            $options['scrolling_pagination'] = self::$default_options;
+        } else {
+            $options['scrolling_pagination'] = array_merge(self::$default_options, $options['scrolling_pagination']);    
         }
-        self::$options = $options;
+        self::$options = $options['scrolling_pagination'];
     }
+
+
     /**
      * Get plugin options
      *
      * @return array
      */
-    public function get_options()
+    public static function get_options()
     {
         return self::$options;
     }

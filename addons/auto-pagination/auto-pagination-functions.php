@@ -178,12 +178,16 @@ class SH_AutoPag_Functions {
         if (get_post_meta( $post->ID, 'single_not_paginate', true ) == 'yes')
             return $content;
 
-		$options = $sh_page_links->get_options();
+        $options = $sh_page_links->get_options();
 		
         $content = str_replace("<!--nextpage-->", "", $content);
 		
         $post_type = get_post_type($post);
-		$enabled = unserialize($options['single_view']['enabled_posts']);
+        if (is_array($options['single_view']['enabled_posts']))
+            $enabled = $options['single_view']['enabled_posts'];
+        else
+            $enabled = unserialize($options['single_view']['enabled_posts']);
+            
 		if (!in_array($post_type, $enabled))
 			return $content;
 		
@@ -400,7 +404,9 @@ class SH_AutoPag_Functions {
 		
 		if (!$args) {
 			$args = $this->get_default_arguments();
-		}
+		} else {
+            $args = array_merge($this->get_default_arguments(), $args);
+        }
 		
         if ($page == 0)
             $page = 1;
@@ -450,7 +456,7 @@ class SH_AutoPag_Functions {
             }
 
 			
-            $link_html_formatted = " "
+            $link_html_formatted = " a"
                     . $link_wrapper_outter_open
 					. $link_html_open
                     . $link_wrapper_open

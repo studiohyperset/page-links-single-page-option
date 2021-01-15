@@ -51,11 +51,12 @@ class SH_ScrollingPagination_Functions {
         if ($scrolls < 1)
             return $content;
         $content = "";
-	
+        
         //
         // generate our scrolling navigation...
         // Start with prev/next links
-        $page = ($page == 0) ? 1 : $page;
+        $page = (empty($page)) ? 1 : intval($page);
+
         $prev_link = "";
         $next_link = "";
         if (!$singlepage) {
@@ -118,7 +119,7 @@ class SH_ScrollingPagination_Functions {
 		// Set defaults...
 		$link_wrapper_open = "";
 		$link_wrapper_close = "";
-		if (!empty($args)) {
+		if (!empty($args['link_wrapper'])) {
 			$link_wrapper = $args['link_wrapper'];
 			$link_class = "";
 			$link_classes[0] = '';
@@ -225,6 +226,16 @@ class SH_ScrollingPagination_Functions {
             'nextpagelink' => __('Next', SH_PAGE_LINKS_DOMAIN) . ' &rarr;',
             'previouspagelink' => '&larr; '. __('Previous', SH_PAGE_LINKS_DOMAIN),
             'pagelink' => '%page%',
+            'pages_to_scroll' => '3',
+            'nextpageclass' => '',
+            'previouspageclass' => '',
+            'firstpage' => __('First', SH_PAGE_LINKS_DOMAIN),
+            'firstpageclass' => '',
+            'lastpage' => __('Last', SH_PAGE_LINKS_DOMAIN),
+            'lastpageclass' => '',
+            'elipsis' => '...',
+            'link_before_outter' => '',
+            'link_after_outter' => ''
         );
         $r = wp_parse_args(array(), $defaults);
         $r = apply_filters('wp_link_pages_args', $r);
